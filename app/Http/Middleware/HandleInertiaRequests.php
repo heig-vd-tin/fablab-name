@@ -45,7 +45,7 @@ class HandleInertiaRequests extends Middleware
             ],
             'foo' => 'bar',
             'auth' => $request->user()
-                ? $request->user()->only('id', 'name', 'email')
+                ? $request->user()->only('id', 'firstname', 'lastname', 'votes', 'email')
                 : null,
         ]);
     }

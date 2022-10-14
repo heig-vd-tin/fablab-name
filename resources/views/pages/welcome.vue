@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Votes from "./Votes.vue";
-defineProps({ names: Array, votes: Number });
+import Votes from '../pages/Votes.vue';
+defineProps({ names: Array, auth: Object });
 
 const submitName = () => {
     console.log("submit");
@@ -74,14 +74,14 @@ const submitName = () => {
             type="text"
             name="name"
             id="name"
-            class="block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            class="block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500 "
             placeholder="Quel nom souhaites-tu proposer ?"
         />
         <input
             type="text"
             name="description"
             id="description"
-            class="block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            class="block  rounded-lg px-2 border-gray-500 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500 "
             placeholder="Décrit ta proposition en quelques mots"
         />
         <button
@@ -93,6 +93,6 @@ const submitName = () => {
     </section>
 
     <section class="md:container mx-auto px-20 mt-20 bg-indigo-200">
-        <Votes :data="names"/>
+        <Votes :data="names" :votes="auth.votes"/>
     </section>
 </template>

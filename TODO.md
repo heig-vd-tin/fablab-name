@@ -1,7 +1,10 @@
-# TODO
+# TODO list
 
-- [ ] Retrieve votes from user
-- [ ] Dispatch remaining votes
+What to do:
+
+- [x] Retrieve votes from user
+- [x] Dispatch remaining votes
+- [ ] Remember vote value on each name
 - [ ] Choose pictures
 - [ ] Adjust style of text
 - [ ] Indicates number of votes per name
@@ -12,3 +15,4 @@
   - [ ] Validate form
   - [ ] Refresh page
 - [ ] Anonymous or not for names
+- [ ] CSRF protection

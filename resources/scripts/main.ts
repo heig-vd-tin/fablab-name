@@ -17,9 +17,15 @@ function withVite(pages: Record<string, any>, name: string) {
   throw new Error('Page not found: ' + name)
 }
 
+console.log(import.meta.glob('../views/pages/*.vue'));
+function resolving(name) {
+  let u = withVite(import.meta.glob('../views/pages/*.vue'), name);
+  console.log(`WTF ${name}`, u);
+  return u;
+}
+
 createInertiaApp({
-  resolve: (name) => withVite(import.meta.glob('../views/pages/**/*.vue'), name),
-  //resolve: (name) => resolvePageComponent(name, import.meta.glob('../views/pages/**/*.vue')),
+  resolve: name => resolving(name), // withVite(import.meta.glob('../views/pages/*.vue'), name),
   setup({ el, app, props, plugin }) {
     createApp({ render: () => h(app, props) })
       .use(plugin)

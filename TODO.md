@@ -4,7 +4,8 @@ What to do:
 
 - [x] Retrieve votes from user
 - [x] Dispatch remaining votes
-- [ ] Remember vote value on each name
+- [x] Remember vote value on each name
+- [ ] Do not allow to vote on own name
 - [ ] Choose pictures
 - [ ] Adjust style of text
 - [ ] Indicates number of votes per name

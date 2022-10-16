@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-function welcome() {
+function welcome()
+{
     return inertia('welcome', [
         'names' => Name::all()->map(fn ($name) => [
             'id' => $name->id,
@@ -29,7 +30,9 @@ function welcome() {
     ]);
 }
 
-Route::match(['get'], '/', function() {return welcome();});
+Route::match(['get'], '/', function () {
+    return welcome();
+});
 
 Route::post('/', function (Request $request) {
     $name = Name::find($request->input('id'));
@@ -39,12 +42,22 @@ Route::post('/', function (Request $request) {
     } else if ($name->downvote && $request->input('downvote')) {
         $name->votes()->detach(Auth::user()->id);
     } else if ($name->upvote || $name->downvote) {
-        $name->votes()->updateExistingPivot(Auth::user()->id, ['upvote' => (boolean)$request->input('upvote')]);
+        $name->votes()->updateExistingPivot(Auth::user()->id, ['upvote' => (bool)$request->input('upvote')]);
     } else {
-        $name->votes()->attach(Auth::user()->id, ['upvote' => (boolean)$request->input('upvote')]);
+        $name->votes()->attach(Auth::user()->id, ['upvote' => (bool)$request->input('upvote')]);
     }
 
     return welcome();
+});
+
+Route::post('/add', function (Request $request) {
+
+    Auth::user()->names()->create($request->validate([
+        'name' => 'required|unique:names|min:5|max:42',
+        'description' => 'required|min:5|max:255',
+    ]));
+
+    return redirect('/');
 });
 
 Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);

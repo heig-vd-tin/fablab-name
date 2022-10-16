@@ -1,6 +1,17 @@
 <script setup lang="ts">
-import Votes from '../pages/Votes.vue';
+import Votes from "../pages/Votes.vue";
+import { Inertia } from "@inertiajs/inertia";
+import { useForm } from "@inertiajs/inertia-vue3";
 defineProps({ names: Array, auth: Object, votes: Number });
+
+const form = useForm({
+    name: null,
+    description: null,
+});
+
+const submit = () => {
+    form.post('/add', { preserveScroll: true, onSuccess: () => form.reset() });
+};
 
 const submitName = () => {
     console.log("submit");
@@ -70,29 +81,36 @@ const submitName = () => {
     <section class="md:container mx-auto px-20 bg-sky-200">
         <h1>Aurais-tu un (autre) nom à proposer ?</h1>
         NOM DESCRIPTION ou explication de l'acronyme Je valide ma sélection
-        <input
-            type="text"
-            name="name"
-            id="name"
-            class="block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500 "
-            placeholder="Quel nom souhaites-tu proposer ?"
-        />
-        <input
-            type="text"
-            name="description"
-            id="description"
-            class="block  rounded-lg px-2 border-gray-500 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500 "
-            placeholder="Décrit ta proposition en quelques mots"
-        />
-        <button
-            @click="submitName()"
-            class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-        >
-            Proposer
-        </button>
+        <form @submit.prevent="submit">
+            <input
+                type="text"
+                name="name"
+                id="name"
+                class="block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+                placeholder="Quel nom souhaites-tu proposer ?"
+                v-model="form.name"
+            />
+            <div v-if="form.errors.name">{{ form.errors.name }}</div>
+            <input
+                type="text"
+                name="description"
+                id="description"
+                class="block rounded-lg px-2 border-gray-500 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+                placeholder="Décrit ta proposition en quelques mots"
+                v-model="form.description"
+            />
+            <div v-if="form.errors.description">{{ form.errors.description }}</div>
+            <button
+                @click="submitName()"
+                class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                :disabled="form.processing"
+            >
+                Proposer
+            </button>
+        </form>
     </section>
 
     <section class="md:container mx-auto px-20 mt-20 bg-indigo-200">
-        <Votes :data="names" :votes="votes"/>
+        <Votes :data="names" :votes="votes" />
     </section>
 </template>

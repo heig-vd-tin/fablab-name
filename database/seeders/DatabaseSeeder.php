@@ -17,77 +17,37 @@ class DatabaseSeeder extends Seeder
         ]);
         $user->save();
 
-        $user->names()->create([
-            'name' => 'CO LAB',
-            'description' => 'Coworking Laboratory',
-        ])->save();
-        $user->names()->create([
-            'name' => 'Le Hub',
-            'description' => 'Convergence Hub',
-        ])->save();
-        $user->names()->create([
-            'name' => 'InnoLab',
-            'description' => 'Innovation Laboratory',
-        ])->save();
-        $user->names()->create([
-            'name' => 'CreativityLab',
-            'description' => 'Laboratoire de créativité et d\'innovation',
-        ])->save();
-        $user->names()->create([
-            'name' => 'Makerspace',
-            'description' => 'Espace Maker, espace de fabrication',
-        ])->save();
-        $user->names()->create([
-            'name' => 'The MakerLab',
-            'description' => 'Laboratoire de fabrication pour Makers',
-        ])->save();
-        $user->names()->create([
-            'name' => 'Faboratoire',
-            'description' => 'Fabrication-Laboratoire',
-        ])->save();
-        $user->names()->create([
-            'name' => 'OpenFactory',
-            'description' => 'Une fabrique ouverte',
-        ])->save();
-        $user->names()->create([
-            'name' => 'The Circle Lab',
-            'description' => 'Le cercle est le centre de la vie',
-        ])->save();
-        $user->names()->create([
-            'name' => 'Impact Lab',
-            'description' => 'Un laboratoire avec un réel impact',
-        ])->save();
-        $user->names()->create([
-            'name' => 'The TechnoLab',
-            'description' => 'Laboratoire de technologie',
-        ])->save();
-        $user->names()->create([
-            'name' => 'Creatron',
-            'description' => 'Centre de création',
-        ])->save();
-        $user->names()->create([
-            'name' => 'La Forge',
-            'description' => 'Là ou les idées prennent forme et se forgent',
-        ])->save();
-        $user->names()->create([
-            'name' => 'La Ruche',
-            'description' => 'Lieu de rencontre et d\'échange dans l\'esprit Maker',
-        ])->save();
-        $user->names()->create([
-            'name' => 'The Lab',
-            'description' => 'Le laboratoire, le seul, le vrai',
-        ])->save();
-        $user->names()->create([
-            'name' => 'LAC',
-            'description' => 'Laboratoire des activités créatives',
-        ])->save();
+        if (config('app.env') !== 'production') {
+            User::create([
+                'firstname' => 'John',
+                'lastname' => 'Doe',
+                'email' => 'john.doe@acme.inc',
+                'password' => bcrypt('password'),
+            ])->save();
+        }
 
-        $user = User::create([
-            'firstname' => 'John',
-            'lastname' => 'Doe',
-            'email' => 'john.doe@acme.inc',
-            'password' => bcrypt('password'),
-        ]);
-        $user->save();
+        // Names proposed by FabLab COPIL
+        $names = [
+            ['name' => 'CO LAB', 'description' => 'Coworking Laboratory'],
+            ['name' => 'Le Hub', 'description' => 'Convergence Hub'],
+            ['name' => 'InnoLab', 'description' => 'Innovation Laboratory'],
+            ['name' => 'CreativityLab', 'description' => 'Laboratoire de créativité et d\'innovation'],
+            ['name' => 'Makerspace', 'description' => 'Espace Maker, espace de fabrication'],
+            ['name' => 'The MakerLab', 'description' => 'Laboratoire de fabrication pour Makers'],
+            ['name' => 'Faboratoire', 'description' => 'Fabrication-Laboratoire'],
+            ['name' => 'OpenFactory', 'description' => 'Une fabrique ouverte'],
+            ['name' => 'The Circle Lab', 'description' => 'Le cercle est le centre de la vie'],
+            ['name' => 'Impact Lab', 'description' => 'Un laboratoire avec un réel impact'],
+            ['name' => 'The TechnoLab', 'description' => 'Laboratoire de technologie'],
+            ['name' => 'Creatron', 'description' => 'Centre de création'],
+            ['name' => 'La Forge', 'description' => 'Là ou les idées prennent forme et se forgent'],
+            ['name' => 'La Ruche', 'description' => 'Lieu de rencontre et d\'échange dans l\'esprit Maker'],
+            ['name' => 'The Lab', 'description' => 'Le laboratoire, le seul, le vrai'],
+            ['name' => 'LAC', 'description' => 'Laboratoire des activités créatives'],
+        ];
+        foreach ($names as $name) {
+            $name['anonymous'] = true;
+            $user->names()->create($name)->save();
+        }
     }
 }

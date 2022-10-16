@@ -1,22 +1,4 @@
-<script setup lang="ts">
-import Votes from "../pages/Votes.vue";
-import { Inertia } from "@inertiajs/inertia";
-import { useForm } from "@inertiajs/inertia-vue3";
-defineProps({ names: Array, auth: Object, votes: Number });
 
-const form = useForm({
-    name: null,
-    description: null,
-});
-
-const submit = () => {
-    form.post('/add', { preserveScroll: true, onSuccess: () => form.reset() });
-};
-
-const submitName = () => {
-    console.log("submit");
-};
-</script>
 
 <template layout>
     <section class="md:container mx-auto max-w-7xl px-20 pb-20 mt-20">
@@ -99,6 +81,13 @@ const submitName = () => {
                 placeholder="Décrit ta proposition en quelques mots"
                 v-model="form.description"
             />
+
+            <input
+                type="checkbox"
+                name="anonymous"
+                id="anonymous"
+                v-model="form.anonymous"
+            />
             <div v-if="form.errors.description">{{ form.errors.description }}</div>
             <button
                 @click="submitName()"
@@ -114,3 +103,24 @@ const submitName = () => {
         <Votes :data="names" :votes="votes" />
     </section>
 </template>
+
+<script setup lang="ts">
+import Votes from "../pages/Votes.vue";
+import { Inertia } from "@inertiajs/inertia";
+import { useForm } from "@inertiajs/inertia-vue3";
+defineProps({ names: Array, auth: Object, votes: Number });
+
+const form = useForm({
+    name: null,
+    description: null,
+    anonymous: false,
+});
+
+const submit = () => {
+    form.post('/add', { preserveScroll: true, onSuccess: () => form.reset() });
+};
+
+const submitName = () => {
+    console.log("submit");
+};
+</script>

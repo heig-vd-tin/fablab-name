@@ -23,6 +23,7 @@
             >
                 -
             </button>
+            <div v-if="item.user">{{ item.user }}</div>
         </li>
     </ul>
 </template>

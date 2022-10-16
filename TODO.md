@@ -5,6 +5,7 @@ What to do:
 - [x] Retrieve votes from user
 - [x] Dispatch remaining votes
 - [x] Remember vote value on each name
+- [ ] Show my name on the name?
 - [ ] Do not allow to vote on own name
 - [ ] Choose pictures
 - [ ] Adjust style of text

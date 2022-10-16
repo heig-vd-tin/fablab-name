@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('names', function (Blueprint $table) {
@@ -18,7 +13,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->string('name')->unique();
             $table->string('description');
-            //$table->integer('votes')->default(0);
+            $table->boolean('anonymous')->default(false);
             $table->timestamps();
         });
 
@@ -31,11 +26,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('names');

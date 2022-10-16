@@ -16,3 +16,4 @@ yarn-error.log
 /.idea
 /.vscode
 *:com.dropbox.attrs
+*:Zone.Identifier

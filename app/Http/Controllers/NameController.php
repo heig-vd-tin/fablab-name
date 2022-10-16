@@ -13,8 +13,9 @@ class NameController extends Controller
     /**
      * Return the list of names
      */
-    public function index()
+    public function index(Request $request)
     {
+        $sort = $request->input('sort', 'score') ? 'score' : 'updated_at';
         return inertia('welcome', [
             'names' => Name::all()->map(fn ($name) => [
                 'id' => $name->id,
@@ -24,7 +25,8 @@ class NameController extends Controller
                 'upvote' => $name->upvote,
                 'downvote' => $name->downvote,
                 'user' => !$name->anonymous ? $name->user->name : null,
-            ]),
+                'updated_at' => $name->updated_at,
+            ])->sortByDesc($sort),
             'votes' => Auth::user()->fresh()->remaining_votes,
             'participants' => User::all()->count(),
             'all_votes' => Vote::all()->count(),

@@ -16,7 +16,7 @@
         </h1>
         <p class="mx-auto mt-10 max-w-2xl text-lg font-thin text-slate-200">
             Né en 2016 à la <a href="http://heig-vd.ch">HEIG-VD</a>, le
-            <span class="font-bold">fablab</span> est un espace ouvert aux
+            <span class="font-bold">FabLab</span> est un espace ouvert aux
             étudiant·e·es et aux collaborateurs·trices de l'école pour réaliser
             leurs projets académiques et privé en mettant à disposition des
             outils de fabrication et d'assemblage dans une atmosphère
@@ -24,93 +24,122 @@
         </p>
     </section>
 
-    <section class="mx-auto mt-16 max-w-3xl px-4 sm:px-6 lg:px-8">
-        <h2 class="mt-10 mb-5 text-center">
-            Nous lançons auprès de toutes et tous, et ce jusqu'au 31 octobre
-            2022, une campagne interactive et collaborative pour trouver un
-            nouveau nom.
-        </h2>
-
-        <vue-countdown
-            :time="timeLeft"
-            :interval="100"
-            v-slot="{ days, hours, minutes, seconds, milliseconds }"
+    <section class="mx-auto mt-16 max-w-3xl px-4 pb-10 sm:px-6 lg:px-8">
+        <h1
+            class="mb-8 text-center font-display font-bold tracking-tight text-slate-900 sm:text-4xl"
         >
-            Dépèche toi il ne reste que {{ days }} jours, {{ hours }} heures,
-            {{ minutes }} minutes et {{ seconds }}.{{
-                Math.floor(milliseconds / 100)
-            }}
-            secondes.
-        </vue-countdown>
-        <h2 class="text-center font-light text-slate-600">Aides-nous !</h2>
-        <p class="font-light text-slate-800">
-            Notre direction a validé l'agrandissement de la surface de l'atelier
-            en offrant davantage de machines et d'outils pour nourrir la
-            créativité et donner naissances aux idées innovantes de nos futur-es
-            ingénieur-es.
+            Pourquoi avons-nous besoin de toi ?
+        </h1>
+        <p class="pb-4 text-justify text-slate-800">
+            La surface de l'atelier s'agrandit en offrant davantage de machines
+            et d'outils pour nourrir la créativité et donner naissances aux
+            idées innovantes de nos futur·es ingénieur·es.
+        </p>
+        <p class="pb-4 text-justify text-slate-800">
+            Pourquoi changer de nom ? La terminologie FabLab (fabrication
+            laboratory) est une franchise née au Media Lab du MIT en 2001. Ce
+            nom impose certaines obligations auquelle la HEIG-VD ne peut pas
+            accéder. C'est pourquoi notre espace Maker se cherche un nouveau
+            nom.
         </p>
 
-        <p>
+        <h1
+            class="mb-8 text-center font-display font-bold tracking-tight text-slate-900 sm:text-4xl"
+        >
+            Comment participer ?
+        </h1>
+        <p class="mt-10 mb-5 text-justify">
+            Nous lançons auprès de toutes et tous une campagne interactive et
+            collaborative pour trouver un nouveau nom.
+
+            <vue-countdown
+                :time="timeLeft"
+                :interval="100"
+                v-slot="{ days, hours, minutes, seconds, milliseconds }"
+            >
+                Alors dépèches-toi de te rendre au bas de la page pour saisir
+                tes votes car il ne reste que {{ days }} jours,
+                {{ hours }} heures et {{ minutes }} minutes pour tenter de
+                remporter la récompense.
+            </vue-countdown>
+        </p>
+
+        <p class="mt-10 mb-5 text-justify">
             La première place du classement sera récompensée par un bon d'une
-            valeur de <strong>150</strong> francs à la FNAC, la seconde place de
+            valeur de <strong>150</strong> francs à la
+            <a href="https://www.fr.fnac.ch/">FNAC</a>, la seconde place de
             <strong>100</strong> francs et la troisième de
             <strong>50</strong> francs.
         </p>
-        <p>
-            Notre direction a validé l'agrandissement de la surface de l'atelier
-            en offrant davantage de machines et d'outils pour nourrir la
-            créativité et donner naissances aux idées innovantes de nos futur-es
-            ingénieur-es.
+    </section>
+    <img
+        src="@/assets/laser.jpg"
+        class="parallax-up mt-20 w-full object-cover"
+        style="height: 35rem"
+    />
+    <section class="mx-auto mt-16 max-w-3xl px-4 pb-10 sm:px-6 lg:px-8">
+        <h1
+            class="mb-8 text-center font-display font-bold tracking-tight text-slate-900 sm:text-4xl"
+        >
+            Un atelier créatif à l'école ?
+        </h1>
+
+        <p class="mt-10 mb-5 text-justify">
+            L'actuel espace est accessible sur le site de Cheseaux dans le local
+            C08. L'accès est réservé à ceux qui ont signé les règles
+            d'utilisation. Certaines machines ne sont accessibles qu'après une
+            formation. Pour plus d'informations, n'hésitez pas à vous rendre sur
+            le
+            <a href="https://intra.heig-vd.ch/campus/fablab/Pages/default.aspx"
+                >site du FabLab</a
+            >.
+        </p>
+        <p class="mt-10 mb-5 text-justify">
+            Cet espace est utilisé pour l'enseignement, notamment dans le cadre
+            des projets multidisciplinaires, mais également pour les
+            étudiant·e·s désireu·x·ses de créer et de collaborer. Au FabLab,
+            vous pouvez disposer d'outillages, d'imprimantes 3D, de nombreuses
+            machines telles que graveuse et découpeuse laser ainsi que d'un
+            certain nombre de consommables en libre-service.
+        </p>
+
+        <p class="mt-10 mb-5 text-justify">
+            En 2022, une extension a été prévue pour accueillir plus de monde et
+            plus d'équipement. Voici le plan de l'extension:
         </p>
         <a href="#" @click="toggleModal()">
             <img src="@/assets/blueprint.png" />
         </a>
     </section>
-    <section class="mx-auto mt-20 max-w-7xl px-20 pb-20 md:container">
-        <h1>Notre "FabLab" se cherche une nouvelle identité.</h1>
-
-        <p>Aides-nous à lui trouver un nouveau nom.</p>
-    </section>
-    <img
-        class="lazy loaded parallax-image"
-        src="https://simpleparallax.b-cdn.net/images/paint_1.jpg"
-        height="535"
-    />
 
     <img
         src="@/assets/projmulti.jpg"
-        class="parallax-image mx-auto max-w-7xl px-4 pt-20 pb-16 text-center sm:px-6 lg:px-8 lg:pt-32"
+        class="parallax-right w-full object-cover"
+        style="height: 35rem"
     />
     <!-- mx-auto max-w-7xl px-4 pt-20 pb-16 text-center sm:px-6 lg:px-8 lg:pt-32" -->
 
-    <section
-        class="mx-auto mx-auto max-w-full max-w-full bg-gradient-to-r from-cyan-500 to-blue-500 px-20"
-    >
-        <p class="mx-auto mt-10 max-w-2xl text-lg font-thin text-slate-200">
-            À toi de jouer. Nous cherchons un nom court, moderne, percutant,
+    <section class="mx-auto mt-16 max-w-3xl px-4 pb-10 sm:px-6 lg:px-8">
+        <h1
+            class="mb-8 text-center font-display font-bold tracking-tight text-slate-900 sm:text-4xl"
+        >
+            Tu as une idée de nom ?
+        </h1>
+        <p class="mt-10 mb-5 text-justify">
+            À toi de jouer ! Nous cherchons un nom court, moderne, percutant,
             simple à prononcer et à retenir à la symbolique compatible avec les
             mots-clés : laboratoire, atelier, étudiants, ingénieurs, projets,
             réalisation, technologie, création, prototypage, hackerspace, open
             design, hacker culture, fabrication, innovation, créativité et bien
-            entendu l'esprit maker.
-        </p>
-        <p>
-            Pourquoi changer de nom ? La terminologie FabLab (fabrication
-            laboratory) est une franchise née au Media Lab du MIT en 2001. Ce
-            nom impose certaines obligations auquelle la HEIG-VD ne peut pas
-            accéder. C'est pourquoi notre "FabLab" se cherche un nouveau nom.
+            entendu l'esprit maker...
         </p>
 
-    </section>
-    <section class="mx-auto bg-sky-200 px-20 md:container">
-        <h1>Aurais-tu un (autre) nom à proposer ?</h1>
-        NOM DESCRIPTION ou explication de l'acronyme Je valide ma sélection
         <form @submit.prevent="submit">
             <input
                 type="text"
                 name="name"
                 id="name"
-                class="block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+                class="mb-2 block w-full rounded-lg border-gray-500 px-2 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
                 placeholder="Quel nom souhaites-tu proposer ?"
                 v-model="form.name"
             />
@@ -119,97 +148,113 @@
                 type="text"
                 name="description"
                 id="description"
-                class="block rounded-lg border-gray-500 px-2 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+                class="mb-2 block w-full rounded-lg border-gray-500 px-2 pl-7 pr-20 focus:border-indigo-500 focus:ring-indigo-500"
                 placeholder="Décrit ta proposition en quelques mots"
                 v-model="form.description"
             />
             <div v-if="form.errors.description">
                 {{ form.errors.description }}
             </div>
-            <input
-                type="checkbox"
-                name="anonymous"
-                id="anonymous"
-                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                v-model="form.anonymous"
-            />
-            <label for="anonymous" class="font-medium text-gray-700"
-                >Ne pas divulguer mon nom</label
-            >
+            <div class="flex content-center justify-end">
+                <input
+                    type="checkbox"
+                    name="anonymous"
+                    id="anonymous"
+                    class="h-5 w-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                    v-model="form.anonymous"
+                />
+                <label for="anonymous" class="pl-2 font-medium text-gray-700"
+                    >Ne pas divulguer mon nom</label
+                >
 
-            <button
-                @click="submitName()"
-                class="rounded bg-purple-500 py-2 px-4 text-center text-white hover:bg-purple-700"
-                :disabled="form.processing"
-            >
-                Proposer
-            </button>
+                <button
+                    @click="submitName()"
+                    class="ml-4 rounded bg-purple-500 py-2 px-4 text-center text-white hover:bg-purple-700"
+                    :disabled="form.processing"
+                >
+                    Proposer
+                </button>
+            </div>
         </form>
     </section>
 
-    <h1
-        class="text-center font-display font-bold tracking-tight text-slate-900 sm:text-4xl"
+    <section
+        class="mx-auto max-w-full bg-gradient-to-r from-indigo-500 via-blue-500 to-pink-500 pt-10 font-display tracking-tight text-slate-900"
     >
-        Deuxième étape : les votes
-    </h1>
-    <p class="mx-auto font-display max-w-4xl tracking-tight text-slate-900">
-        <h3 class="text-lg font-medium leading-6 text-gray-900 pb-5 pt-2">
-            Règles du jeu
-        </h3>
+        <h1
+            class="text-center font-display font-bold tracking-tight text-slate-900 sm:text-4xl"
+        >
+            Prêt pour voter ?
+        </h1>
+        <div class="mx-auto max-w-4xl pb-10 pt-5">
+            <h3 class="pb-5 pt-2 text-lg font-medium leading-6 text-gray-900">
+                Règles du jeu
+            </h3>
 
-        <ul class="list-decimal">
-            <li>
-                Tu peux venir ici aussi <span class="font-bold">souvent</span> que tu le souhaites jusqu'à la
-                fin de la campagne
-            </li>
-            <li>
-                Tu possèdes <span class="font-bold">trois</span> votes que tu peux en tout temps modifier (un
-                vote peut-être positif ou négatif)
-            </li>
-            <li>Tu à la possibilité de proposer un nouveau nom</li>
-            <li>
-                Un nom qui franchirait le seul des -5 votes sera automatiquement
-                retiré de la liste
-            </li>
-        </ul>
-    </p>
-    <div class="mx-auto mt-6 max-w-4xl">
-        <h3 class="text-lg font-medium leading-6 text-gray-900">
-            Statistiques
-        </h3>
-        <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
-            <div class="rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-                <dt class="truncate text-sm font-medium text-gray-500">
-                    Noms proposés
-                </dt>
-                <dd
-                    class="mt-1 text-3xl font-semibold tracking-tight text-gray-900"
-                >
-                    {{ names.length }}
-                </dd>
-            </div>
-            <div class="rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-                <dt class="truncate text-sm font-medium text-gray-500">
-                    Participants
-                </dt>
-                <dd
-                    class="mt-1 text-3xl font-semibold tracking-tight text-gray-900"
-                >
-                    {{ participants }}
-                </dd>
-            </div>
-            <div class="rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-                <dt class="truncate text-sm font-medium text-gray-500">
-                    Nombre de votes
-                </dt>
-                <dd
-                    class="mt-1 text-3xl font-semibold tracking-tight text-gray-900"
-                >
-                    {{ all_votes }}
-                </dd>
-            </div>
-        </dl>
-    </div>
+            <ul class="mb-10 list-decimal">
+                <li>
+                    Tu peux venir ici aussi
+                    <span class="font-bold">souvent</span> que tu le souhaites
+                    jusqu'à la fin de la campagne.
+                </li>
+                <li>
+                    Tu possèdes <span class="font-bold">trois</span> votes que
+                    tu peux en tout temps modifier (un vote peut-être positif ou
+                    négatif).
+                </li>
+                <li>
+                    Tu à la possibilité de proposer un nouveau nom une fois par
+                    jour.
+                </li>
+                <li>
+                    Un nom qui franchirait le seul des -5 votes sera
+                    automatiquement retiré de la liste.
+                </li>
+            </ul>
+
+            <h3 class="text-lg font-medium leading-6 text-gray-900">
+                Statistiques
+            </h3>
+            <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
+                <div class="rounded-lg bg-white px-2 py-3 shadow sm:p-6">
+                    <dt class="truncate text-sm font-medium text-gray-500">
+                        Noms proposés
+                    </dt>
+                    <dd
+                        class="mt-1 text-3xl font-semibold tracking-tight text-gray-900"
+                    >
+                        {{ names.length }}
+                    </dd>
+                </div>
+                <div class="rounded-lg bg-white px-2 py-3 shadow sm:p-6">
+                    <dt class="truncate text-sm font-medium text-gray-500">
+                        Participants
+                    </dt>
+                    <dd
+                        class="mt-1 text-3xl font-semibold tracking-tight text-gray-900"
+                    >
+                        {{ participants }}
+                    </dd>
+                </div>
+                <div class="rounded-lg bg-white px-2 py-3 shadow sm:p-6">
+                    <dt class="truncate text-sm font-medium text-gray-500">
+                        Nombre de votes
+                    </dt>
+                    <dd
+                        class="mt-1 text-3xl font-semibold tracking-tight text-gray-900"
+                    >
+                        {{ all_votes }}
+                    </dd>
+                </div>
+            </dl>
+            <p class="pt-10">
+                À toi, tu possèdes encore {{ votes }} vote{{
+                    votes > 0 ? 's' : ''
+                }}, à toi de jouer.
+            </p>
+        </div>
+    </section>
+    <div class="mx-auto mt-6 max-w-4xl"></div>
 
     <section class="mx-auto mt-20 px-20 md:container">
         <Votes :data="names" :votes="votes" />
@@ -319,9 +364,15 @@ document.onkeydown = function (evt) {
 
 onMounted(() => {
     console.log('mounted in the composition api!')
-    var image = document.getElementsByClassName('parallax-image')
-    new simpleParallax(image, {
-        // orientation: 'right',
+    new simpleParallax(document.getElementsByClassName('parallax-up'), {
+        orientation: 'up',
+        speed: 1.0,
+        delay: 0.6,
+    })
+    console.log('mounted in the composition api!')
+    new simpleParallax(document.getElementsByClassName('parallax-right'), {
+        orientation: 'right',
+        delay: 0.6,
     })
     var tooltipTriggerList = [].slice.call(
         document.querySelectorAll('[data-bs-toggle="tooltip"]')

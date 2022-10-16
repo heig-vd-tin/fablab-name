@@ -18,7 +18,15 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->string('name');
             $table->string('description');
-            $table->integer('votes')->default(0);
+            //$table->integer('votes')->default(0);
+            $table->timestamps();
+        });
+
+        Schema::create('name_user', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id');
+            $table->foreignId('name_id');
+            $table->boolean('upvote')->default(true);
             $table->timestamps();
         });
     }

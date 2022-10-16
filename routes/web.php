@@ -15,31 +15,36 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::match(['get'], '/', function (Request $request) {
-    Auth::loginUsingId(1, true);
-
+function welcome() {
     return inertia('welcome', [
         'names' => Name::all()->map(fn ($name) => [
             'id' => $name->id,
             'name' => $name->name,
             'description' => $name->description,
-            'votes' => $name->votes
+            'score' => $name->score,
+            'upvote' => $name->upvote,
+            'downvote' => $name->downvote,
         ]),
-        'votes' => 3
+        'votes' => Auth::user()->fresh()->remaining_votes,
     ]);
-});
+}
+
+Route::match(['get'], '/', function() {return welcome();});
+
 Route::post('/', function (Request $request) {
-    Name::find($request->input('id'))
-        ->increment('votes', (int)$request->input('vote'));
-    Auth::user()->decrement('votes');
+    $name = Name::find($request->input('id'));
 
-    return inertia('welcome', [
-        'names' => Name::all()->map(fn ($name) => [
-            'id' => $name->id,
-            'name' => $name->name,
-            'description' => $name->description,
-            'votes' => $name->votes
-        ]),
-        'votes' => 3
-    ]);
+    if ($name->upvote && $request->input('upvote')) {
+        $name->votes()->detach(Auth::user()->id);
+    } else if ($name->downvote && $request->input('downvote')) {
+        $name->votes()->detach(Auth::user()->id);
+    } else if ($name->upvote || $name->downvote) {
+        $name->votes()->updateExistingPivot(Auth::user()->id, ['upvote' => (boolean)$request->input('upvote')]);
+    } else {
+        $name->votes()->attach(Auth::user()->id, ['upvote' => (boolean)$request->input('upvote')]);
+    }
+
+    return welcome();
 });
+
+Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);

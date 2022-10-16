@@ -6,18 +6,20 @@
     </p>
     <ul>
         <li v-for="item in data" :key="item.id">
-            {{ item.id }} <strong>{{item.votes}}</strong> {{ item.name }} > {{votes}}
+            {{ item.id }} <strong>{{item.score}}</strong> {{ item.name }} > {{votes}}
             <button
-                @click="vote(item.id, 1)"
+                @click="upvote(item.id)"
                 class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-                v-if="votes > 0"
+                v-bind:class="{ 'bg-green-400': item.upvote}"
+                :disabled="votes <= 0 && !item.upvote"
             >
                 +
             </button>
             <button
-                @click="vote(item.id, -1)"
-                v-if="votes > 0"
-                class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                @click="downvote(item.id)"
+                class=" hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                v-bind:class="{ 'bg-green-400': item.downvote}"
+                :disabled="votes <= 0 && !item.downvote"
             >
                 -
             </button>
@@ -29,10 +31,11 @@
 const props = defineProps({ data: Array, votes: Number });
 import {Inertia} from '@inertiajs/inertia';
 
-const vote = (id: number, vote: number) => {
-    // if (props.votes > 0) {
-        Inertia.post('/', { id, vote },{ preserveScroll: true });
-        console.log(id, value);
-    // }
-};
+const upvote = (id: number) => {
+    Inertia.post('/', { id, upvote: true },{ preserveScroll: true });
+}
+const downvote = (id: number) => {
+    Inertia.post('/', { id, downvote: true },{ preserveScroll: true });
+}
+
 </script>

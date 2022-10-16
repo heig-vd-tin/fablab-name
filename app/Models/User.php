@@ -46,4 +46,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Name::class);
     }
+
+    public function votes() {
+        return $this->belongsToMany(Name::class)->withPivot('upvote');
+    }
+
+    public function getRemainingVotesAttribute() {
+        return max(0, config('app.votes') - $this->votes->count());
+    }
 }

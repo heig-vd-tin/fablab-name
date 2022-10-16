@@ -81,5 +81,13 @@ class DatabaseSeeder extends Seeder
             'name' => 'LAC',
             'description' => 'Laboratoire des activités créatives',
         ])->save();
+
+        $user = User::create([
+            'firstname' => 'John',
+            'lastname' => 'Doe',
+            'email' => 'john.doe@acme.inc',
+            'password' => bcrypt('password'),
+        ]);
+        $user->save();
     }
 }

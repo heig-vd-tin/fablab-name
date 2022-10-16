@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Votes from '../pages/Votes.vue';
-defineProps({ names: Array, auth: Object });
+defineProps({ names: Array, auth: Object, votes: Number });
 
 const submitName = () => {
     console.log("submit");
@@ -93,6 +93,6 @@ const submitName = () => {
     </section>
 
     <section class="md:container mx-auto px-20 mt-20 bg-indigo-200">
-        <Votes :data="names" :votes="auth.votes"/>
+        <Votes :data="names" :votes="votes"/>
     </section>
 </template>

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamp('last_visit_at')->nullable();
             $table->string('password');
-            $table->integer('votes')->default(3);
+            //$table->integer('votes')->default(3);
             $table->integer('visits')->default(0);
             $table->rememberToken();
             $table->timestamps();

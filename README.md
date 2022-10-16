@@ -1,4 +1,24 @@
-## HEIG-VD -- FabLab New Name
+# HEIG-VD - FabLab New Name Survey 2022
+
+This web application is a survey to find a new name for the FabLab at HEIG-VD.
+It will be part of the HEIG-VD FabLab 2022 Extension Project in which the FabLab will be doubled in size. A new name is wanted to reflect the new size and the new possibilities also to remove the constraint of the name "FabLab" which is a trademark.
+
+This App is developed on Laravel and Vue with InertiaJS.
+
+## Development
+
+### Install
+
+```bash
+git clone
+cd
+npm install
+composer install
+$ npm run build
+$ php artisan migrate:fresh --seed
+$ npx vite
+$ php artisan serve
+```
 
 ### Versions
 
@@ -9,65 +29,24 @@ $ node --version
 v16.17.1
 $ php --version
 PHP 8.1.11 (cli)
-$ php -m
-[PHP Modules]
-calendar
-Core
-ctype
-curl
-date
-dom
-exif
-FFI
-fileinfo
-filter
-ftp
-gettext
-hash
-iconv
-intl
-json
-libxml
-mbstring
-openssl
-pcntl
-pcre
-PDO
-pdo_sqlite
-Phar
-posix
-readline
-Reflection
-session
-shmop
-SimpleXML
-sockets
-sodium
-SPL
-sqlite3
-standard
-sysvmsg
-sysvsem
-sysvshm
-tokenizer
-xml
-xmlreader
-xmlwriter
-xsl
-Zend OPcache
-zip
-zlib
-
-[Zend Modules]
-Zend OPcache
 ```
 
-### Deployment
+## TODO list
 
-```bash
-git clone
-cd
-npm install
-composer install
-$ npm run build
-$ php artisan migrate:fresh --seed
+- [x] Retrieve votes from user
+- [x] Dispatch remaining votes
+- [x] Remember vote value on each name
+- [x] Show my name on the name?
+- [ ] Do not allow to vote on own name
+- [ ] Choose pictures
+- [ ] Adjust style of text
+- [ ] Indicates number of votes per name
+- [ ] Order votes by popularity or randomly
+- [ ] Test login with switch aai
+- [ ] Propose names
+  - [ ] Make form
+  - [ ] Validate form
+  - [ ] Refresh page
+- [ ] Anonymous or not for names
+- [ ] CSRF protection
+- [ ] GitHub link to sources

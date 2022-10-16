@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Name;
+use App\Models\User;
+use App\Models\Vote;
 use Illuminate\Support\Facades\Auth;
 
 class NameController extends Controller
@@ -24,13 +26,16 @@ class NameController extends Controller
                 'user' => !$name->anonymous ? $name->user->name : null,
             ]),
             'votes' => Auth::user()->fresh()->remaining_votes,
+            'participants' => User::all()->count(),
+            'all_votes' => Vote::all()->count(),
         ]);
     }
 
     /**
      * Vote for an existing name.
      */
-    public function vote(Request $request) {
+    public function vote(Request $request)
+    {
         $name = Name::find($request->input('id'));
 
         if ($name->upvote && $request->input('upvote')) {

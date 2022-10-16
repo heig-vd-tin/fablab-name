@@ -8,6 +8,8 @@ use Name;
 
 class Vote extends Pivot
 {
+    protected $table = 'name_user';
+
     public function name()
     {
         return $this->belongsTo(Name::class);

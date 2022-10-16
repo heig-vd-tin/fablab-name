@@ -2,41 +2,73 @@
     <p>
         Tu peux maintenant participer aux votes. Reviens aussi souvent que tu le
         souhaites sur cette plateforme avant le 31 octobre 2022, date de la fin
-        de la campagne. Tu possèdes encore {{votes}} votes, à toi de jouer :
+        de la campagne. Tu possèdes encore {{ votes }} votes, à toi de jouer :
     </p>
-    <ul>
-        <li v-for="item in data" :key="item.id">
-            {{ item.id }} <strong>{{item.score}}</strong> {{ item.name }} > {{votes}}
-            <button
-                @click="upvote(item.id)"
-                class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-                v-bind:class="{ 'bg-green-400': item.upvote}"
-                :disabled="votes <= 0 && !item.upvote"
-            >
-                +
-            </button>
-            <button
-                @click="downvote(item.id)"
-                class=" hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-                v-bind:class="{ 'bg-green-400': item.downvote}"
-                :disabled="votes <= 0 && !item.downvote"
-            >
-                -
-            </button>
-            <div v-if="item.user">{{ item.user }}</div>
+    <span class="isolate inline-flex rounded-md shadow-sm">
+        <button
+            type="button"
+            data-tooltip-target="tooltip-default"
+            class="relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            data-bs-toggle="tooltip"
+            data-bs-placement="bottom"
+            title="Trier par popularité"
+        >
+            <span class="sr-only">Previous</span>
+            <StarIcon class="h-5 w-5" aria-hidden="true" />
+        </button>
+
+        <button
+            type="button"
+            class="relative -ml-px inline-flex items-center rounded-r-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            data-bs-toggle="tooltip"
+            data-bs-placement="bottom"
+            title="Trier par date"
+        >
+            <span class="sr-only">Next</span>
+            <ClockIcon class="h-5 w-5" aria-hidden="true" />
+        </button>
+        <HandThumbDownIcon class="h-10 w-10" fill="red" aria-hidden="true" />
+    </span>
+
+    <ul role="list" class="divide-y divide-gray-200">
+        <li
+            v-for="item in data"
+            :key="item.id"
+            class="flex items-center py-1 sm:px-2"
+        >
+            <VoteBtn
+                :vote="item.upvote - item.downvote"
+                :count="item.score"
+                :disabled="votes <= 0"
+                @upvote="upvote(item.id)"
+                @downvote="downvote(item.id)"
+            ></VoteBtn>
+            <div class="ml-3">
+                <p class="text-sm font-medium text-gray-900">
+                    {{ item.name }}
+                    <span v-if="item.user">{{ item.user }}</span>
+                </p>
+                <p class="text-sm text-gray-500">{{ item.description }}</p>
+            </div>
         </li>
     </ul>
 </template>
 
 <script setup lang="ts">
-const props = defineProps({ data: Array, votes: Number });
-import {Inertia} from '@inertiajs/inertia';
-
+const props = defineProps({ data: Array, votes: Number })
+import { Inertia } from '@inertiajs/inertia'
+import VoteBtn from '../pages/VoteBtn.vue'
+import {
+    ChevronLeftIcon,
+    ChevronRightIcon,
+    HandThumbDownIcon,
+    StarIcon,
+    ClockIcon,
+} from '@heroicons/vue/20/solid'
 const upvote = (id: number) => {
-    Inertia.post('/', { id, upvote: true },{ preserveScroll: true });
+    Inertia.post('/', { id, upvote: true }, { preserveScroll: true })
 }
 const downvote = (id: number) => {
-    Inertia.post('/', { id, downvote: true },{ preserveScroll: true });
+    Inertia.post('/', { id, downvote: true }, { preserveScroll: true })
 }
-
 </script>

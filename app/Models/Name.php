@@ -28,11 +28,13 @@ class Name extends Model
         return $this->belongsToMany(User::class)->withTimestamps()->withPivot('upvote');
     }
 
-    public function getScoreAttribute() {
-        return $this->votes()->count();
+    public function getScoreAttribute()
+    {
+        return $this->votes()->sum('upvote') - $this->votes()->count();
     }
 
-    public function getUpvoteAttribute() {
+    public function getUpvoteAttribute()
+    {
         if (Auth::check()) {
             $entry = $this->votes()->where('user_id', Auth::user()->id)->first();
             return $entry and $entry->pivot->upvote;
@@ -40,7 +42,8 @@ class Name extends Model
         return false;
     }
 
-    public function getDownvoteAttribute() {
+    public function getDownvoteAttribute()
+    {
         if (Auth::check()) {
             $entry = $this->votes()->where('user_id', Auth::user()->id)->first();
             return $entry and !$entry->pivot->upvote;

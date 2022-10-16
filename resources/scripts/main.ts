@@ -1,9 +1,10 @@
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/inertia-vue3'
 import { resolvePageComponent } from 'vite-plugin-laravel/inertia'
-import 'tailwindcss/tailwind.css'
-
+// import 'tailwindcss/tailwind.css'
 import 'vite/modulepreload-polyfill'
+import 'tw-elements';
+import VueCountdown from '@chenfengyuan/vue-countdown'
 
 function withVite(pages: Record<string, any>, name: string) {
   for (const path in pages) {
@@ -17,18 +18,12 @@ function withVite(pages: Record<string, any>, name: string) {
   throw new Error('Page not found: ' + name)
 }
 
-console.log(import.meta.glob('../views/pages/*.vue'));
-function resolving(name) {
-  let u = withVite(import.meta.glob('../views/pages/*.vue'), name);
-  console.log(`WTF ${name}`, u);
-  return u;
-}
-
 createInertiaApp({
-  resolve: name => resolving(name), // withVite(import.meta.glob('../views/pages/*.vue'), name),
+  resolve: name => withVite(import.meta.glob('../views/pages/*.vue'), name),
   setup({ el, app, props, plugin }) {
     createApp({ render: () => h(app, props) })
       .use(plugin)
+      .component(VueCountdown.name, VueCountdown)
       .mount(el)
   },
 })

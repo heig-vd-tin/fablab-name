@@ -10,19 +10,16 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $user = User::create([
-            'firstname' => 'Yves',
-            'lastname' => 'Chevallier',
+            'keycloak_id' => 'd9ffdf71-2265-4556-bc8b-ab9d9d61b23f',
+            'name' => 'Yves Chevallier',
             'email' => 'yves.chevallier@heig-vd.ch',
-            'password' => bcrypt('password'),
         ]);
         $user->save();
 
         if (config('app.env') !== 'production') {
             $user = User::create([
-                'firstname' => 'Fab',
-                'lastname' => 'Lab',
+                'name' => 'FabLab',
                 'email' => 'fablab@heig-vd.ch',
-                'password' => bcrypt('password'),
             ]);
             $user->save();
         }

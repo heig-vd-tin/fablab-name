@@ -37,16 +37,19 @@ PHP 8.1.11 (cli)
 - [x] Dispatch remaining votes
 - [x] Remember vote value on each name
 - [x] Show my name on the name?
-- [ ] Do not allow to vote on own name
-- [ ] Choose pictures
-- [ ] Adjust style of text
-- [ ] Indicates number of votes per name
-- [ ] Order votes by popularity or randomly
+- [x] Do not allow to vote on own name
+- [x] Error messages in french
+- [x] Choose pictures
+- [x] Adjust style of text
+- [x] Indicates number of votes per name
+- [x] Propose names
+  - [x] Make form
+  - [x] Validate form
+  - [x] Refresh page
+- [x] Anonymous or not for names
+- [x] Can vote only once per day
+- [x] Order votes by popularity or randomly
+- [ ] Is it better to store vote direction instead of bool upvote in db?
 - [ ] Test login with switch aai
-- [ ] Propose names
-  - [ ] Make form
-  - [ ] Validate form
-  - [ ] Refresh page
-- [ ] Anonymous or not for names
 - [ ] CSRF protection
 - [ ] GitHub link to sources

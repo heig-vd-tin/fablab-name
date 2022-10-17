@@ -30,7 +30,7 @@ class Name extends Model
 
     public function getScoreAttribute()
     {
-        return $this->votes()->sum('upvote') - $this->votes()->count();
+        return 2 * $this->votes()->sum('upvote') - $this->votes()->count();
     }
 
     public function getUpvoteAttribute()

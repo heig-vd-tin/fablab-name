@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Carbon\Carbon;
+use Carbon\CarbonInterval;
 
 class User extends Authenticatable
 {
@@ -42,7 +44,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getNameAttribute() {
+    public function getNameAttribute()
+    {
         return $this->firstname . ' ' . $this->lastname;
     }
 
@@ -51,11 +54,21 @@ class User extends Authenticatable
         return $this->hasMany(Name::class);
     }
 
-    public function votes() {
+    public function votes()
+    {
         return $this->belongsToMany(Name::class)->withPivot('upvote');
     }
 
-    public function getRemainingVotesAttribute() {
+    public function getRemainingVotesAttribute()
+    {
         return max(0, config('app.votes') - $this->votes->count());
+    }
+
+    public function getNextSuggestionInAttribute()
+    {
+        $lastSuggestion = $this->names()->orderBy('updated_at', 'DESC')->first();
+        return new CarbonInterval($lastSuggestion ?
+            Carbon::now()->diff($lastSuggestion->updated_at->addDay()) :
+            0);
     }
 }

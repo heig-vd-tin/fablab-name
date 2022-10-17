@@ -83,7 +83,7 @@ const props = withDefaults(defineProps<Props>(), {
     vote: 0,
     count: 0,
     disabled: 0,
-    style: 'hand',
+    style: 'arrow',
 })
 
 const emit = defineEmits(['upvote', 'downvote'])

@@ -2,7 +2,7 @@
     <section
         class="mx-auto max-w-full bg-gradient-to-r from-cyan-500 to-blue-500 px-4 pt-20 pb-16 text-center sm:px-6 lg:px-8 lg:pt-32"
     >
-        <img src="@/assets/heig-logo.svg" class="logo" />
+        <img src="@/assets/heig-logo.svg" class="absolute sm:w-32 w-20 left-5 top-5 sm:left-10 sm:top-10" />
         <h1
             class="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl"
         >
@@ -14,7 +14,7 @@
             >
             se cherche une nouvelle identité.
         </h1>
-        <p class="mx-auto mt-10 max-w-2xl text-lg font-thin text-slate-200">
+        <p class="mx-auto mt-10 max-w-2xl text-lg font-thin text-slate-200 text-justify">
             Né en 2016 à la <a href="http://heig-vd.ch">HEIG-VD</a>, le
             <span class="font-bold">FabLab</span> est un espace ouvert aux
             étudiant·e·es et aux collaborateurs·trices de l'école pour réaliser
@@ -74,10 +74,10 @@
     </section>
     <img
         src="@/assets/laser.jpg"
-        class="parallax-up mt-20 w-full object-cover"
+        class="parallax-up mt-10 w-full object-cover hidden md:block"
         style="height: 35rem"
     />
-    <section class="mx-auto mt-16 max-w-3xl px-4 pb-10 sm:px-6 lg:px-8">
+    <section class="mx-auto mt-10 max-w-3xl px-4 pb-10 sm:px-6 lg:px-8">
         <h1
             class="mb-8 text-center font-display font-bold tracking-tight text-slate-900 sm:text-4xl"
         >
@@ -125,6 +125,18 @@
         >
             Tu as une idée de nom ?
         </h1>
+        <div v-if="next_suggestion_in > 0">
+            <p class="mt-10 mb-5 text-justify">
+                <vue-countdown
+                :time="next_suggestion_in * 1000"
+                :interval="100"
+                v-slot="{ days, hours, minutes, seconds, milliseconds }"
+            >
+                Merci pour ta proposition de nom ! Il n'est possible de proposer un nom que toutes les <strong>24 heures</strong>. Patience donc car tu pourras à nouveau proposer un nom dans <strong>{{ hours }} heures et {{ minutes }} minutes</strong>.
+            </vue-countdown>
+            </p>
+        </div>
+        <div v-else>
         <p class="mt-10 mb-5 text-justify">
             À toi de jouer ! Nous cherchons un nom court, moderne, percutant,
             simple à prononcer et à retenir à la symbolique compatible avec les
@@ -176,38 +188,39 @@
                 </button>
             </div>
         </form>
+        </div>
     </section>
 
     <section
-        class="mx-auto max-w-full bg-gradient-to-r from-indigo-500 via-blue-500 to-pink-500 pt-10 font-display tracking-tight text-slate-900"
+        class="mx-auto max-w-full bg-gradient-to-r from-indigo-500 via-blue-500 to-pink-500 pt-10 p-2 font-display tracking-tight text-slate-900"
     >
         <h1
             class="text-center font-display font-bold tracking-tight text-slate-900 sm:text-4xl"
         >
             Prêt pour voter ?
         </h1>
-        <div class="mx-auto max-w-4xl pb-10 pt-5">
+        <div class="mx-auto max-w-3xl pb-10 pt-5">
             <h3 class="pb-5 pt-2 text-lg font-medium leading-6 text-gray-900">
                 Règles du jeu
             </h3>
 
-            <ul class="mb-10 list-decimal">
-                <li>
+            <ul class="mb-10 list-decimal list-inside pl-2">
+                <li class="mb-2">
                     Tu peux venir ici aussi
                     <span class="font-bold">souvent</span> que tu le souhaites
                     jusqu'à la fin de la campagne.
                 </li>
-                <li>
+                <li class="mb-2">
                     Tu possèdes <span class="font-bold">trois</span> votes que
                     tu peux en tout temps modifier (un vote peut-être positif ou
                     négatif).
                 </li>
-                <li>
-                    Tu à la possibilité de proposer un nouveau nom une fois par
-                    jour.
+                <li class="mb-2">
+                    Tu à la possibilité de proposer un nouveau nom <span class="font-bold">une fois par
+                    jour</span>.
                 </li>
-                <li>
-                    Un nom qui franchirait le seul des -5 votes sera
+                <li class="mb-2">
+                    Un nom en dessous de <span class="font-bold">-5 votes</span> sera
                     automatiquement retiré de la liste.
                 </li>
             </ul>
@@ -215,42 +228,42 @@
             <h3 class="text-lg font-medium leading-6 text-gray-900">
                 Statistiques
             </h3>
-            <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
-                <div class="rounded-lg bg-white px-2 py-3 shadow sm:p-6">
+            <dl class="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-3">
+                <div class="rounded-lg bg-white px-2 py-3 shadow sm:p-6 m-2">
                     <dt class="truncate text-sm font-medium text-gray-500">
                         Noms proposés
                     </dt>
                     <dd
-                        class="mt-1 text-3xl font-semibold tracking-tight text-gray-900"
+                        class="mt-1 text-3xl font-semibold tracking-tight text-gray-900 text-center"
                     >
-                        {{ names.length }}
+                        {{ Object.keys(names).length }}
                     </dd>
                 </div>
-                <div class="rounded-lg bg-white px-2 py-3 shadow sm:p-6">
+                <div class="rounded-lg bg-white px-2 py-3 shadow sm:p-6  m-2">
                     <dt class="truncate text-sm font-medium text-gray-500">
                         Participants
                     </dt>
                     <dd
-                        class="mt-1 text-3xl font-semibold tracking-tight text-gray-900"
+                        class="mt-1 text-3xl font-semibold tracking-tight text-gray-900 text-center"
                     >
                         {{ participants }}
                     </dd>
                 </div>
-                <div class="rounded-lg bg-white px-2 py-3 shadow sm:p-6">
+                <div class="rounded-lg bg-white px-2 py-3 shadow sm:p-6  m-2">
                     <dt class="truncate text-sm font-medium text-gray-500">
                         Nombre de votes
                     </dt>
                     <dd
-                        class="mt-1 text-3xl font-semibold tracking-tight text-gray-900"
+                        class="mt-1 text-3xl font-semibold tracking-tight text-gray-900 text-center"
                     >
                         {{ all_votes }}
                     </dd>
                 </div>
             </dl>
             <p class="pt-10">
-                À toi, tu possèdes encore {{ votes }} vote{{
+                À toi, tu possèdes encore <span class="font-bold">{{ votes }} vote{{
                     votes > 0 ? 's' : ''
-                }}, à toi de jouer.
+                }}</span>, à toi de jouer.
             </p>
         </div>
     </section>
@@ -295,6 +308,15 @@
             </div>
         </div>
     </div>
+
+    <section
+        class="flex items-center justify-end mt-10 mx-auto max-w-full bg-gradient-to-r from-cyan-500 to-blue-500  text-center py-4 px-4"
+    >
+        <span class="isolate inline-flex shadow-sm">Tu as trouvé un bug ? Informes-nous ici </span>
+        <a href="https://github.com/heig-vd-tin/fablab-name">
+            <img src="@/assets/octocat.svg" target="_blank" class="ml-2 w-10"/>
+        </a>
+    </section>
 </template>
 
 <script setup lang="ts">
@@ -304,11 +326,12 @@ import simpleParallax from 'simple-parallax-js'
 import { onMounted } from 'vue'
 
 defineProps({
-    names: Array,
+    names: Object,
     auth: Object,
     votes: Number,
     participants: Number,
     all_votes: Number,
+    next_suggestion_in: Number,
     errors: Object,
 })
 
@@ -363,13 +386,12 @@ document.onkeydown = function (evt) {
 }
 
 onMounted(() => {
-    console.log('mounted in the composition api!')
     new simpleParallax(document.getElementsByClassName('parallax-up'), {
         orientation: 'up',
         speed: 1.0,
         delay: 0.6,
     })
-    console.log('mounted in the composition api!')
+
     new simpleParallax(document.getElementsByClassName('parallax-right'), {
         orientation: 'right',
         delay: 0.6,
@@ -382,14 +404,3 @@ onMounted(() => {
     })
 })
 </script>
-
-<style scoped>
-.logo {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto;
-    position: absolute;
-    top: 10px;
-    left: 30px;
-}
-</style>

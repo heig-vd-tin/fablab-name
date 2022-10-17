@@ -7,7 +7,8 @@ use App\Models\Name;
 use App\Models\User;
 use App\Models\Vote;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
 class NameController extends Controller
 {
     /**
@@ -19,17 +20,20 @@ class NameController extends Controller
         return inertia('welcome', [
             'names' => Name::all()->map(fn ($name) => [
                 'id' => $name->id,
+                'user' => !$name->anonymous ? $name->user->name : null,
                 'name' => $name->name,
                 'description' => $name->description,
                 'score' => $name->score,
+                'owned' => $name->user_id == Auth::user()->id,
                 'upvote' => $name->upvote,
                 'downvote' => $name->downvote,
-                'user' => !$name->anonymous ? $name->user->name : null,
                 'updated_at' => $name->updated_at,
-            ])->sortByDesc($sort),
+            ]),
             'votes' => Auth::user()->fresh()->remaining_votes,
             'participants' => User::all()->count(),
             'all_votes' => Vote::all()->count(),
+            'next_suggestion_in' => Auth::user()->fresh()->next_suggestion_in->totalSeconds,
+
         ]);
     }
 
@@ -39,6 +43,9 @@ class NameController extends Controller
     public function vote(Request $request)
     {
         $name = Name::find($request->input('id'));
+        if ($name->owned) {
+            return redirect()->back()->with('error', 'You cannot vote for your own name.');
+        }
 
         if ($name->upvote && $request->input('upvote')) {
             $name->votes()->detach(Auth::user()->id);
@@ -59,10 +66,15 @@ class NameController extends Controller
      */
     public function store(Request $request)
     {
+        $lastSuggestion = Auth::user()->names()->orderBy('updated_at', 'DESC')->first();
+        if($lastSuggestion && $lastSuggestion->updated_at->diffInHours(now()) < 24) {
+            return redirect()->back()->with('error', 'You can only suggest a name once every 24 hours.');
+        }
+
         Auth::user()->names()->create($request->validate([
             'name' => 'required|unique:names|min:5|max:42',
             'description' => 'required|min:5|max:255',
-            'anonymous' => 'boolean',
+            'anonymous' => 'boolean'
         ]));
 
         return redirect('/');

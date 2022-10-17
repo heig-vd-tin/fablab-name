@@ -18,12 +18,13 @@ class DatabaseSeeder extends Seeder
         $user->save();
 
         if (config('app.env') !== 'production') {
-            User::create([
-                'firstname' => 'John',
-                'lastname' => 'Doe',
-                'email' => 'john.doe@acme.inc',
+            $user = User::create([
+                'firstname' => 'Fab',
+                'lastname' => 'Lab',
+                'email' => 'fablab@heig-vd.ch',
                 'password' => bcrypt('password'),
-            ])->save();
+            ]);
+            $user->save();
         }
 
         // Names proposed by FabLab COPIL

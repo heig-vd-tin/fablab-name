@@ -1,6 +1,6 @@
 <template layout>
     <section
-        class="mx-auto max-w-full bg-gradient-to-r from-cyan-500 to-blue-500 px-4 pt-20 pb-16 text-center sm:px-6 lg:px-8 lg:pt-32"
+        class="mx-auto max-w-full bg-gradient-to-r from-sky-300 to-blue-600 px-4 pt-20 pb-16 text-center sm:px-6 lg:px-8 lg:pt-32"
     >
         <img src="@/assets/heig-logo.svg" class="absolute sm:w-32 w-20 left-5 top-5 sm:left-10 sm:top-10" />
         <h1
@@ -8,13 +8,13 @@
         >
             Le
             <span
-                class="text-transparent"
-                style="-webkit-text-stroke: 1px black"
+                class="text-white"
+
                 >FabLab</span
             >
             se cherche une nouvelle identité.
         </h1>
-        <p class="mx-auto mt-10 max-w-2xl text-lg font-thin text-slate-200 text-justify">
+        <p class="mx-auto mt-10 max-w-2xl text-lg font-normal text-slate-200 text-justify">
             Né en 2016 à la <a href="http://heig-vd.ch">HEIG-VD</a>, le
             <span class="font-bold">FabLab</span> est un espace ouvert aux
             étudiant·e·es et aux collaborateurs·trices de l'école pour réaliser
@@ -192,7 +192,7 @@
     </section>
 
     <section
-        class="mx-auto max-w-full bg-gradient-to-r from-indigo-500 via-blue-500 to-pink-500 pt-10 p-2 font-display tracking-tight text-slate-900"
+        class="mx-auto max-w-full bg-gradient-to-l from-sky-300 to-blue-600  pt-10 p-2 font-display tracking-tight text-slate-900"
     >
         <h1
             class="text-center font-display font-bold tracking-tight text-slate-900 sm:text-4xl"

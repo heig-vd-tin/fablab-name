@@ -38,7 +38,7 @@
             <VoteBtn
                 :vote="item.upvote - item.downvote"
                 :count="item.score"
-                :disabled="votes <= 0 /*|| item.owned*/"
+                :disabled="votes <= 0 || item.owned"
                 @upvote="upvote(item.id)"
                 @downvote="downvote(item.id)"
             ></VoteBtn>

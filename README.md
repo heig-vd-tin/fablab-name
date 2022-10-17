@@ -55,3 +55,53 @@ PHP 8.1.11 (cli)
 - [ ] Test login with switch aai
 - [ ] CSRF protection
 - [ ] GitHub link to sources
+
+## Deployment
+
+### Apache
+
+Create a virtual host in `/etc/apache2/sites-available` with the following content:
+
+```apache
+<VirtualHost *:80>
+        ServerName fablab-name-survey.chevallier.io
+
+        ServerAdmin yves.chevallier@heig-vd.ch
+        DocumentRoot /srv/fablab-name/public
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+    <Directory /srv/fablab-name>
+        OPtions Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+</VirtualHost>
+```
+
+Enable the site with:
+
+```bash
+a2ensite fablab-name-survey.chevallier.io
+systemctl reload apache2
+```
+
+### LetsEncrypt
+
+```bash
+certbot --apache -d fablab-name-survey.chevallier.io
+```
+
+### Install app
+
+```bash
+cd /srv/fablab-name
+composer install
+npm install
+cp .env.example .env
+# Populate .env
+php artisan key:generate
+php artisan migrate:fresh --seed
+npm run build
+```

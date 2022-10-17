@@ -1,20 +1,21 @@
 <template layout>
     <section
-        class="mx-auto max-w-full bg-gradient-to-r from-sky-300 to-blue-600 px-4 pt-20 pb-16 text-center sm:px-6 lg:px-8 lg:pt-32"
+        class="mx-auto max-w-full bg-gradient-to-r from-sky-300 to-blue-600 pb-16 text-center sm:px-6 lg:px-4 lg:pt-32"
     >
-        <img src="@/assets/heig-logo.svg" class="absolute sm:w-32 w-20 left-5 top-5 sm:left-10 sm:top-10" />
+        <img
+            src="@/assets/heig-logo.svg"
+            class="absolute left-5 top-5 w-20 sm:left-10 sm:top-10 sm:w-32"
+        />
         <h1
             class="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl"
         >
             Le
-            <span
-                class="text-white"
-
-                >FabLab</span
-            >
+            <span class="text-white">FabLab</span>
             se cherche une nouvelle identité.
         </h1>
-        <p class="mx-auto mt-10 max-w-2xl text-lg font-normal text-slate-200 text-justify">
+        <p
+            class="mx-auto mt-10 max-w-2xl text-justify text-lg font-normal text-slate-200"
+        >
             Né en 2016 à la <a href="http://heig-vd.ch">HEIG-VD</a>, le
             <span class="font-bold">FabLab</span> est un espace ouvert aux
             étudiant·e·es et aux collaborateurs·trices de l'école pour réaliser
@@ -38,9 +39,13 @@
         <p class="pb-4 text-justify text-slate-800">
             Pourquoi changer de nom ? La terminologie FabLab (fabrication
             laboratory) est une franchise née au Media Lab du MIT en 2001. Ce
-            nom impose certaines obligations auquelle la HEIG-VD ne peut pas
-            accéder. C'est pourquoi notre espace Maker se cherche un nouveau
-            nom.
+            nom impose certaines obligations auxquelle la
+            <a href="http://heig-vd.ch">HEIG-VD</a> ne peut pas accéder. C'est
+            pourquoi notre espace Maker se cherche un nouveau nom.
+        </p>
+        <p class="pb-4 text-justify text-slate-800">
+            Nous cherchons un nom qui reflète notre identité, un nom facile à
+            prononcer.
         </p>
 
         <h1
@@ -49,8 +54,9 @@
             Comment participer ?
         </h1>
         <p class="mt-10 mb-5 text-justify">
-            Nous lançons auprès de toutes et tous une campagne interactive et
-            collaborative pour trouver un nouveau nom.
+            Nous lançons auprès de toutes et tous une campagne
+            <strong>interactive</strong> et collaborative pour trouver un
+            nouveau nom.
 
             <vue-countdown
                 :time="timeLeft"
@@ -64,7 +70,7 @@
             </vue-countdown>
         </p>
 
-        <p class="mt-10 mb-5 text-justify">
+        <p class="pb-4 text-justify text-slate-800">
             La première place du classement sera récompensée par un bon d'une
             valeur de <strong>150</strong> francs à la
             <a href="https://www.fr.fnac.ch/">FNAC</a>, la seconde place de
@@ -74,7 +80,7 @@
     </section>
     <img
         src="@/assets/laser.jpg"
-        class="parallax-up mt-10 w-full object-cover hidden md:block"
+        class="parallax-up mt-10 hidden w-full object-cover md:block"
         style="height: 35rem"
     />
     <section class="mx-auto mt-10 max-w-3xl px-4 pb-10 sm:px-6 lg:px-8">
@@ -84,17 +90,17 @@
             Un atelier créatif à l'école ?
         </h1>
 
-        <p class="mt-10 mb-5 text-justify">
+        <p class="pb-4 text-justify text-slate-800">
             L'actuel espace est accessible sur le site de Cheseaux dans le local
             C08. L'accès est réservé à ceux qui ont signé les règles
             d'utilisation. Certaines machines ne sont accessibles qu'après une
-            formation. Pour plus d'informations, n'hésitez pas à vous rendre sur
+            formation. Pour plus d'informations, n'hésitez pas à te rendre sur
             le
             <a href="https://intra.heig-vd.ch/campus/fablab/Pages/default.aspx"
                 >site du FabLab</a
             >.
         </p>
-        <p class="mt-10 mb-5 text-justify">
+        <p class="pb-4 text-justify text-slate-800">
             Cet espace est utilisé pour l'enseignement, notamment dans le cadre
             des projets multidisciplinaires, mais également pour les
             étudiant·e·s désireu·x·ses de créer et de collaborer. Au FabLab,
@@ -103,9 +109,9 @@
             certain nombre de consommables en libre-service.
         </p>
 
-        <p class="mt-10 mb-5 text-justify">
+        <p class="pb-4 text-justify text-slate-800">
             En 2022, une extension a été prévue pour accueillir plus de monde et
-            plus d'équipement. Voici le plan de l'extension:
+            plus d'équipement. Voici le plan de l'extension :
         </p>
         <a href="#" @click="toggleModal()">
             <img src="@/assets/blueprint.png" />
@@ -128,71 +134,78 @@
         <div v-if="next_suggestion_in > 0">
             <p class="mt-10 mb-5 text-justify">
                 <vue-countdown
-                :time="next_suggestion_in * 1000"
-                :interval="100"
-                v-slot="{ days, hours, minutes, seconds, milliseconds }"
-            >
-                Merci pour ta proposition de nom ! Il n'est possible de proposer un nom que toutes les <strong>24 heures</strong>. Patience donc car tu pourras à nouveau proposer un nom dans <strong>{{ hours }} heures et {{ minutes }} minutes</strong>.
-            </vue-countdown>
+                    :time="next_suggestion_in * 1000"
+                    :interval="100"
+                    v-slot="{ days, hours, minutes, seconds, milliseconds }"
+                >
+                    Merci pour ta proposition de nom ! Il n'est possible de
+                    proposer un nom que toutes les <strong>24 heures</strong>.
+                    Patience donc car tu pourras à nouveau proposer un nom dans
+                    <strong>{{ hours }} heures et {{ minutes }} minutes</strong
+                    >.
+                </vue-countdown>
             </p>
         </div>
         <div v-else>
-        <p class="mt-10 mb-5 text-justify">
-            À toi de jouer ! Nous cherchons un nom court, moderne, percutant,
-            simple à prononcer et à retenir à la symbolique compatible avec les
-            mots-clés : laboratoire, atelier, étudiants, ingénieurs, projets,
-            réalisation, technologie, création, prototypage, hackerspace, open
-            design, hacker culture, fabrication, innovation, créativité et bien
-            entendu l'esprit maker...
-        </p>
+            <p class="mt-10 mb-5 text-justify">
+                À toi de jouer ! Nous cherchons un nom court, moderne,
+                percutant, simple à prononcer et à retenir à la symbolique
+                compatible avec les mots-clés : laboratoire, atelier, étudiants,
+                ingénieurs, projets, réalisation, technologie, création,
+                prototypage, hackerspace, open design, hacker culture,
+                fabrication, innovation, créativité et bien entendu l'esprit
+                maker...
+            </p>
 
-        <form @submit.prevent="submit">
-            <input
-                type="text"
-                name="name"
-                id="name"
-                class="mb-2 block w-full rounded-lg border-gray-500 px-2 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
-                placeholder="Quel nom souhaites-tu proposer ?"
-                v-model="form.name"
-            />
-            <div v-if="form.errors.name">{{ form.errors.name }}</div>
-            <input
-                type="text"
-                name="description"
-                id="description"
-                class="mb-2 block w-full rounded-lg border-gray-500 px-2 pl-7 pr-20 focus:border-indigo-500 focus:ring-indigo-500"
-                placeholder="Décrit ta proposition en quelques mots"
-                v-model="form.description"
-            />
-            <div v-if="form.errors.description">
-                {{ form.errors.description }}
-            </div>
-            <div class="flex content-center justify-end">
+            <form @submit.prevent="submit">
                 <input
-                    type="checkbox"
-                    name="anonymous"
-                    id="anonymous"
-                    class="h-5 w-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                    v-model="form.anonymous"
+                    type="text"
+                    name="name"
+                    id="name"
+                    class="mb-2 block w-full rounded-lg border-gray-500 px-2 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500"
+                    placeholder="Quel nom souhaites-tu proposer ?"
+                    v-model="form.name"
                 />
-                <label for="anonymous" class="pl-2 font-medium text-gray-700"
-                    >Ne pas divulguer mon nom</label
-                >
+                <div v-if="form.errors.name">{{ form.errors.name }}</div>
+                <input
+                    type="text"
+                    name="description"
+                    id="description"
+                    class="mb-2 block w-full rounded-lg border-gray-500 px-2 pl-7 pr-20 focus:border-indigo-500 focus:ring-indigo-500"
+                    placeholder="Décrit ta proposition en quelques mots"
+                    v-model="form.description"
+                />
+                <div v-if="form.errors.description">
+                    {{ form.errors.description }}
+                </div>
+                <div class="flex content-center justify-end">
+                    <input
+                        type="checkbox"
+                        name="anonymous"
+                        id="anonymous"
+                        class="h-5 w-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                        v-model="form.anonymous"
+                    />
+                    <label
+                        for="anonymous"
+                        class="pl-2 font-medium text-gray-700"
+                        >Ne pas divulguer mon nom</label
+                    >
 
-                <button
-                    @click="submitName()"
-                    class="ml-4 rounded bg-purple-500 py-2 px-4 text-center text-white hover:bg-purple-700"
-                    :disabled="form.processing"
-                >
-                    Proposer
-                </button>
-            </div>
-        </form>
+                    <button
+                        @click="submitName()"
+                        class="ml-4 rounded bg-purple-500 py-2 px-4 text-center text-white hover:bg-purple-700"
+                        :disabled="form.processing"
+                    >
+                        Proposer
+                    </button>
+                </div>
+            </form>
         </div>
     </section>
 
     <section
-        class="mx-auto max-w-full bg-gradient-to-l from-sky-300 to-blue-600  pt-10 p-2 font-display tracking-tight text-slate-900"
+        class="mx-auto max-w-full bg-gradient-to-l from-sky-300 to-blue-600 p-2 pt-10 font-display tracking-tight text-slate-900"
     >
         <h1
             class="text-center font-display font-bold tracking-tight text-slate-900 sm:text-4xl"
@@ -204,7 +217,7 @@
                 Règles du jeu
             </h3>
 
-            <ul class="mb-10 list-decimal list-inside pl-2">
+            <ul class="mb-10 list-inside list-decimal pl-2">
                 <li class="mb-2">
                     Tu peux venir ici aussi
                     <span class="font-bold">souvent</span> que tu le souhaites
@@ -216,12 +229,13 @@
                     négatif).
                 </li>
                 <li class="mb-2">
-                    Tu à la possibilité de proposer un nouveau nom <span class="font-bold">une fois par
-                    jour</span>.
+                    Tu à la possibilité de proposer un nouveau nom
+                    <span class="font-bold">une fois par jour</span>.
                 </li>
                 <li class="mb-2">
-                    Un nom en dessous de <span class="font-bold">-5 votes</span> sera
-                    automatiquement retiré de la liste.
+                    Un nom en dessous de
+                    <span class="font-bold">-5 votes</span> sera automatiquement
+                    retiré de la liste.
                 </li>
             </ul>
 
@@ -229,41 +243,42 @@
                 Statistiques
             </h3>
             <dl class="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-3">
-                <div class="rounded-lg bg-white px-2 py-3 shadow sm:p-6 m-2">
+                <div class="m-2 rounded-lg bg-white px-2 py-3 shadow sm:p-6">
                     <dt class="truncate text-sm font-medium text-gray-500">
                         Noms proposés
                     </dt>
                     <dd
-                        class="mt-1 text-3xl font-semibold tracking-tight text-gray-900 text-center"
+                        class="mt-1 text-center text-3xl font-semibold tracking-tight text-gray-900"
                     >
                         {{ Object.keys(names).length }}
                     </dd>
                 </div>
-                <div class="rounded-lg bg-white px-2 py-3 shadow sm:p-6  m-2">
+                <div class="m-2 rounded-lg bg-white px-2 py-3 shadow sm:p-6">
                     <dt class="truncate text-sm font-medium text-gray-500">
                         Participants
                     </dt>
                     <dd
-                        class="mt-1 text-3xl font-semibold tracking-tight text-gray-900 text-center"
+                        class="mt-1 text-center text-3xl font-semibold tracking-tight text-gray-900"
                     >
                         {{ participants }}
                     </dd>
                 </div>
-                <div class="rounded-lg bg-white px-2 py-3 shadow sm:p-6  m-2">
+                <div class="m-2 rounded-lg bg-white px-2 py-3 shadow sm:p-6">
                     <dt class="truncate text-sm font-medium text-gray-500">
                         Nombre de votes
                     </dt>
                     <dd
-                        class="mt-1 text-3xl font-semibold tracking-tight text-gray-900 text-center"
+                        class="mt-1 text-center text-3xl font-semibold tracking-tight text-gray-900"
                     >
                         {{ all_votes }}
                     </dd>
                 </div>
             </dl>
             <p class="pt-10">
-                À toi, tu possèdes encore <span class="font-bold">{{ votes }} vote{{
-                    votes > 0 ? 's' : ''
-                }}</span>, à toi de jouer.
+                À toi, tu possèdes encore
+                <span class="font-bold"
+                    >{{ votes }} vote{{ votes > 0 ? 's' : '' }}</span
+                >, à toi de jouer.
             </p>
         </div>
     </section>
@@ -310,11 +325,13 @@
     </div>
 
     <section
-        class="flex items-center justify-end mt-10 mx-auto max-w-full bg-gradient-to-r from-cyan-500 to-blue-500  text-center py-4 px-4"
+        class="mx-auto mt-10 flex max-w-full items-center justify-end bg-gradient-to-r from-cyan-500 to-blue-500 py-4 px-4 text-center"
     >
-        <span class="isolate inline-flex shadow-sm">Tu as trouvé un bug ? Informes-nous ici </span>
+        <span class="isolate inline-flex shadow-sm"
+            >Tu as trouvé un bug ? Informes-nous ici
+        </span>
         <a href="https://github.com/heig-vd-tin/fablab-name">
-            <img src="@/assets/octocat.svg" target="_blank" class="ml-2 w-10"/>
+            <img src="@/assets/octocat.svg" target="_blank" class="ml-2 w-10" />
         </a>
     </section>
 </template>

@@ -17,8 +17,8 @@ class DevLogin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (env('APP_DEBUG') === true)
-            Auth::loginUsingId(1, true); // If development
+        // if (env('APP_DEBUG') === true)
+        //     Auth::loginUsingId(1, true); // If development
 
         return $next($request);
     }

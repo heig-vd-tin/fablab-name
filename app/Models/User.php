@@ -97,7 +97,6 @@ class User extends Authenticatable
             0);
     }
 
-
     /**
      * Get the value of the model's primary key.
      *
@@ -126,63 +125,5 @@ class User extends Authenticatable
     public function getAuthIdentifier()
     {
         return $this->email;
-    }
-
-    /**
-     * Check user has roles
-     *
-     * @see KeycloakWebGuard::hasRole()
-     *
-     * @param  string|array  $roles
-     * @param  string  $resource
-     * @return boolean
-     */
-    public function hasRole($roles, $resource = '')
-    {
-        return Auth::hasRole($roles, $resource);
-    }
-
-    /**
-     * Get the password for the user.
-     *
-     * @return string
-     * @codeCoverageIgnore
-     */
-    public function getAuthPassword()
-    {
-        throw new \BadMethodCallException('Unexpected method [getAuthPassword] call');
-    }
-
-    /**
-     * Get the token value for the "remember me" session.
-     *
-     * @return string
-     * @codeCoverageIgnore
-     */
-    public function getRememberToken()
-    {
-        throw new \BadMethodCallException('Unexpected method [getRememberToken] call');
-    }
-
-    /**
-     * Set the token value for the "remember me" session.
-     *
-     * @param string $value
-     * @codeCoverageIgnore
-     */
-    public function setRememberToken($value)
-    {
-        throw new \BadMethodCallException('Unexpected method [setRememberToken] call');
-    }
-
-    /**
-     * Get the column name for the "remember me" token.
-     *
-     * @return string
-     * @codeCoverageIgnore
-     */
-    public function getRememberTokenName()
-    {
-        throw new \BadMethodCallException('Unexpected method [getRememberTokenName] call');
     }
 }

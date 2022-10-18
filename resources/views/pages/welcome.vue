@@ -346,11 +346,11 @@
 </template>
 
 <script setup lang="ts">
-import Votes from '../pages/Votes.vue'
+import Votes from '@/views/pages/votes.vue'
 import { useForm } from '@inertiajs/inertia-vue3'
 import simpleParallax from 'simple-parallax-js'
 import { onMounted } from 'vue'
-import '../../scripts/particles.js'
+import '@/scripts/particles.js'
 
 defineProps({
     names: Object,

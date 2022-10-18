@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use \Schema;
+use \Auth;
+use \App\Models\User;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,8 +26,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (config('app.env') === 'local') {
-            \Auth::login(\App\Models\User::find(1));
+        if (config('app.env') === 'local' && Schema::hasTable('users')) {
+            $user = User::find(1);
+            if ($user) {
+                Auth::login($user);
+            }
         }
     }
 }

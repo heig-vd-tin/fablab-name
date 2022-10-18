@@ -75,7 +75,7 @@
 import { reactive, computed, toRefs } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
 import { StarIcon, ClockIcon } from '@heroicons/vue/20/solid'
-import VoteBtn from '../pages/VoteBtn.vue'
+import VoteBtn from '@/views/pages/updown.vue'
 
 const props = defineProps({ data: Array, votes: Number })
 

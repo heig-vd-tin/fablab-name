@@ -4,6 +4,7 @@ import autoprefixer from 'autoprefixer'
 import laravel from 'vite-plugin-laravel'
 import dynamicImport from 'vite-plugin-dynamic-import';
 import vue from '@vitejs/plugin-vue'
+import { fileURLToPath, URL } from "url";
 import inertia from './resources/scripts/vite/inertia-layout'
 // import Components from 'unplugin-vue-components/vite'
 // import Unocss from 'unocss/vite'
@@ -15,14 +16,13 @@ import inertia from './resources/scripts/vite/inertia-layout'
 //   transformerVariantGroup,
 // } from 'unocss'
 
-// const pathSrc = path.resolve(__dirname, 'resources')
 
 export default defineConfig({
-  // resolve: {
-  // 	alias: {
-  // 	  '~/': `${pathSrc}/scripts`,
-  // 	},
-  //   },
+  resolve: {
+    alias: {
+      "@": fileURLToPath(new URL("./resources", import.meta.url)),
+    },
+  },
   plugins: [
     inertia(),
     vue(),

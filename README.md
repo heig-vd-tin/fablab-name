@@ -97,10 +97,18 @@ certbot --apache -d fablab-name-survey.chevallier.io
 
 ```bash
 cd /srv/fablab-name
+git pull
+chown -R www-data:www-data /srv/fablab-name
+
+rm database.sqlite # remove old database
+touch database.sqlite # create new database
+
 composer install
 npm install
+
 cp .env.example .env
 # Populate .env
+
 php artisan key:generate
 php artisan migrate:fresh --seed
 npm run build

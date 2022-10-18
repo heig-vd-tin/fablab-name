@@ -16,13 +16,11 @@ class DatabaseSeeder extends Seeder
         ]);
         $user->save();
 
-        if (config('app.env') !== 'production') {
-            $user = User::create([
-                'name' => 'FabLab',
-                'email' => 'fablab@heig-vd.ch',
-            ]);
-            $user->save();
-        }
+        $user = User::create([
+            'name' => 'FabLab',
+            'email' => 'fablab@heig-vd.ch',
+        ]);
+        $user->save();
 
         // Names proposed by FabLab COPIL
         $names = [

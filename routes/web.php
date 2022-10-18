@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Laravel\Socialite\Facades\Socialite;
-use App\Models\User;
 use App\Http\Controllers\KeyCloakController;
 
 Route::get('auth/redirect', [KeyCloakController::class, 'redirect'])->name('login');

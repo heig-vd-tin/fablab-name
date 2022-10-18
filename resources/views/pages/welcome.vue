@@ -25,7 +25,7 @@
             Né en 2016 à la <a href="http://heig-vd.ch">HEIG-VD</a>, le
             <span class="font-bold">FabLab</span> est un espace ouvert aux
             étudiant·e·es et aux collaborateurs·trices de l'école pour réaliser
-            leurs projets académiques et privé en mettant à disposition des
+            leurs projets académiques et privés en mettant à disposition des
             outils de fabrication et d'assemblage dans une atmosphère
             industrielle et professionnelle.
         </p>
@@ -39,13 +39,13 @@
         </h1>
         <p class="pb-4 text-justify text-slate-800">
             La surface de l'atelier s'agrandit en offrant davantage de machines
-            et d'outils pour nourrir la créativité et donner naissances aux
-            idées innovantes de nos futur·es ingénieur·es.
+            et d'outils pour nourrir la créativité et donner naissance aux idées
+            innovantes de nos futur·es ingénieur·es.
         </p>
         <p class="pb-4 text-justify text-slate-800">
             Pourquoi changer de nom ? La terminologie FabLab (fabrication
             laboratory) est une franchise née au Media Lab du MIT en 2001. Ce
-            nom impose certaines obligations auxquelle la
+            nom impose certaines obligations auxquelles la
             <a href="http://heig-vd.ch">HEIG-VD</a> ne peut pas accéder. C'est
             pourquoi notre espace Maker se cherche un nouveau nom.
         </p>
@@ -69,8 +69,8 @@
                 :interval="100"
                 v-slot="{ days, hours, minutes, seconds, milliseconds }"
             >
-                Alors dépèches-toi de te rendre au bas de la page pour saisir
-                tes votes car il ne reste que {{ days }} jours,
+                Alors, dépêche-toi de te rendre au bas de la page pour saisir
+                tes votes, car il ne reste que {{ days }} jours,
                 {{ hours }} heures et {{ minutes }} minutes pour tenter de
                 remporter la récompense.
             </vue-countdown>
@@ -146,7 +146,7 @@
                 >
                     Merci pour ta proposition de nom ! Il n'est possible de
                     proposer un nom que toutes les <strong>24 heures</strong>.
-                    Patience donc car tu pourras à nouveau proposer un nom dans
+                    Patience donc, car tu pourras à nouveau proposer un nom dans
                     <strong>{{ hours }} heures et {{ minutes }} minutes</strong
                     >.
                 </vue-countdown>

@@ -1,5 +1,5 @@
 <template>
-    <div class="center w-5">
+    <div class="center w-7 sm:w-5">
         <div class="group pt-2">
             <svg
                 class="arrow"

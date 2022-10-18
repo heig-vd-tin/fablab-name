@@ -7,7 +7,7 @@
     <section
         id="particles-js"
         class="mx-auto max-w-full bg-gradient-to-r from-sky-300 to-blue-600 text-center"
-        style="height: 30rem"
+        style="height: 33rem"
     ></section>
     <section
         class="auto absolute top-0 left-0 w-full pt-20 text-center sm:pt-32"
@@ -20,7 +20,7 @@
             se cherche une nouvelle identité.
         </h1>
         <p
-            class="mx-auto mt-10 max-w-2xl text-justify text-lg font-normal text-slate-200"
+            class="mx-auto mt-10 max-w-2xl px-3 text-justify text-lg font-normal text-slate-200"
         >
             Né en 2016 à la <a href="http://heig-vd.ch">HEIG-VD</a>, le
             <span class="font-bold">FabLab</span> est un espace ouvert aux
@@ -126,7 +126,7 @@
 
     <img
         src="@/assets/projmulti.jpg"
-        class="parallax-right w-full object-cover"
+        class="parallax-right hidden w-full object-cover sm:block"
         style="height: 35rem"
     />
     <!-- mx-auto max-w-7xl px-4 pt-20 pb-16 text-center sm:px-6 lg:px-8 lg:pt-32" -->
@@ -334,7 +334,7 @@
     </div>
 
     <section
-        class="mx-auto mt-10 flex max-w-full items-center justify-end bg-gradient-to-r from-cyan-500 to-blue-500 py-4 px-4 text-center"
+        class="mx-auto mt-10 flex max-w-full items-center justify-center bg-gradient-to-r from-cyan-500 to-blue-500 py-4 px-4 text-center sm:justify-end"
     >
         <span class="isolate inline-flex shadow-sm"
             >Tu as trouvé un bug ? Informes-nous ici
@@ -415,13 +415,13 @@ document.onkeydown = function (evt) {
 onMounted(() => {
     new simpleParallax(document.getElementsByClassName('parallax-up'), {
         orientation: 'up',
-        speed: 1.0,
         delay: 0.6,
     })
 
     new simpleParallax(document.getElementsByClassName('parallax-right'), {
         orientation: 'right',
         delay: 0.6,
+        maxTransition: 80,
     })
     var tooltipTriggerList = [].slice.call(
         document.querySelectorAll('[data-bs-toggle="tooltip"]')

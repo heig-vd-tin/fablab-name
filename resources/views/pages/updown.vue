@@ -62,11 +62,11 @@ const emit = defineEmits(['upvote', 'downvote'])
 const vote = ref(props.vote)
 
 const doVote = (value) => {
+    if (props.disabled && props.vote == 0) return
     let event = value > 0 ? 'upvote' : 'downvote'
     vote.value = vote.value === value ? 0 : value
     console.log(event)
     emit(event)
-    //emit('vote', vote.value)
 }
 </script>
 <style scoped>

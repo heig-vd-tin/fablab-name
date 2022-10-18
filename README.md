@@ -49,12 +49,14 @@ PHP 8.1.11 (cli)
 - [x] Anonymous or not for names
 - [x] Can vote only once per day
 - [x] Order votes by popularity or randomly
+- [x] Is it better to store vote direction instead of bool upvote in db?
+- [x] GitHub link to sources
+- [x] Deploy on server
+- [x] Test login with KeyCloak
 - [ ] Remove votes below -5
+- [ ] Issue with vote count when vote is removed (refresh page)
 - [ ] Display random order of names ?
-- [ ] Is it better to store vote direction instead of bool upvote in db?
-- [ ] Test login with switch aai
 - [ ] CSRF protection
-- [ ] GitHub link to sources
 
 ## Deployment
 

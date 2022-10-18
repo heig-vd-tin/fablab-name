@@ -10,4 +10,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/', 'App\Http\Controllers\NameController@index')->name('home');
     Route::post('/', 'App\Http\Controllers\NameController@vote');
     Route::post('/add', 'App\Http\Controllers\NameController@store');
+    Route::post('/reset', 'App\Http\Controllers\NameController@reset');
 });

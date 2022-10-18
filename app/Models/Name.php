@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class Name extends Model
 {
     use HasFactory;
+    protected $appends = array('score');
 
     protected $fillable = [
         'name',

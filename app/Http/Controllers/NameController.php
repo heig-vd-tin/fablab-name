@@ -16,9 +16,10 @@ class NameController extends Controller
      */
     public function index(Request $request)
     {
-        $sort = $request->input('sort', 'score') ? 'score' : 'updated_at';
         return inertia('welcome', [
-            'names' => Name::all()->map(fn ($name) => [
+            'names' => Name::all()->filter(function ($model) {
+                return $model['score'] > -5;
+            })->map(fn ($name) => [
                 'id' => $name->id,
                 'user' => !$name->anonymous ? $name->user->name : null,
                 'name' => $name->name,
@@ -28,12 +29,11 @@ class NameController extends Controller
                 'upvote' => $name->upvote,
                 'downvote' => $name->downvote,
                 'updated_at' => $name->updated_at,
-            ]),
+            ])->values()->all(),
             'votes' => Auth::user()->fresh()->remaining_votes,
             'participants' => User::all()->count(),
             'all_votes' => Vote::all()->count(),
             'next_suggestion_in' => Auth::user()->fresh()->next_suggestion_in->totalSeconds,
-
         ]);
     }
 
@@ -53,19 +53,30 @@ class NameController extends Controller
             $name->votes()->detach(Auth::user()->id);
         } else if ($name->upvote || $name->downvote) {
             $name->votes()->updateExistingPivot(Auth::user()->id, ['upvote' => (bool)$request->input('upvote')]);
-        } else {
+        } else if (Auth::user()->remaining_votes > 0) {
             $name->votes()->attach(Auth::user()->id, ['upvote' => (bool)$request->input('upvote')]);
         }
 
-        LogVote::create([
-            'user_id' => Auth::user()->id,
-            'name_id' => $name->id,
-            'upvote' => (bool)$request->input('upvote'),
-        ]);
+        if (Auth::user()->remaining_votes > 0) {
+            LogVote::create([
+                'user_id' => Auth::user()->id,
+                'name_id' => $name->id,
+                'upvote' => (bool)$request->input('upvote'),
+            ]);
+        }
 
         return redirect('/');
     }
 
+    public function reset()
+    {
+        $names = Auth::user()->votes;
+        foreach ($names as $name) {
+            $name->votes()->detach(Auth::user()->id);
+        }
+
+        return redirect('/');
+    }
     /**
      * Add a new proposed name.
      *

@@ -1,5 +1,19 @@
 <template layout>
     <div class="flex justify-end">
+        <span class="isolate inline-flex items-end rounded-md pr-2 shadow-sm">
+            <button
+                type="button"
+                data-tooltip-target="tooltip-default"
+                class="relative inline-flex items-center rounded-md border border-gray-500 bg-white px-2 py-2 text-sm font-medium text-gray-500"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                title="Rejouer mes votes"
+                @click="reset()"
+            >
+                <span class="sr-only">Rejouer mes votes</span>
+                <XMarkIcon class="h-5 w-5 fill-rose-500" aria-hidden="true" />
+            </button>
+        </span>
         <span class="isolate inline-flex items-end rounded-md shadow-sm">
             <button
                 type="button"
@@ -74,7 +88,7 @@
 <script setup lang="ts">
 import { reactive, computed, toRefs } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
-import { StarIcon, ClockIcon } from '@heroicons/vue/20/solid'
+import { StarIcon, ClockIcon, XMarkIcon } from '@heroicons/vue/20/solid'
 import VoteBtn from '@/views/pages/updown.vue'
 
 const props = defineProps({ data: Array, votes: Number })
@@ -90,12 +104,14 @@ const state = reactive({
 })
 const { sortByScore, sortBy, sortedData } = toRefs(state)
 
+const reset = () => {
+    Inertia.post('/reset', {}, { preserveScroll: true })
+}
+
 const upvote = (id: number) => {
-    console.log('>upvote', id)
     Inertia.post('/', { id, upvote: true }, { preserveScroll: true })
 }
 const downvote = (id: number) => {
-    console.log('>downvote', id)
     Inertia.post('/', { id, downvote: true }, { preserveScroll: true })
 }
 </script>

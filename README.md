@@ -53,7 +53,7 @@ PHP 8.1.11 (cli)
 - [x] GitHub link to sources
 - [x] Deploy on server
 - [x] Test login with KeyCloak
-- [ ] Remove votes below -5
+- [x] Remove votes below -5
 - [ ] Issue with vote count when vote is removed (refresh page)
 - [ ] Display random order of names ?
 - [ ] CSRF protection

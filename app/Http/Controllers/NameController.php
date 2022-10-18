@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Name;
 use App\Models\User;
 use App\Models\Vote;
+use App\Models\LogVote;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Log;
+
 class NameController extends Controller
 {
     /**
@@ -56,6 +56,13 @@ class NameController extends Controller
         } else {
             $name->votes()->attach(Auth::user()->id, ['upvote' => (bool)$request->input('upvote')]);
         }
+
+        LogVote::create([
+            'user_id' => Auth::user()->id,
+            'name_id' => $name->id,
+            'upvote' => (bool)$request->input('upvote'),
+        ]);
+
         return redirect('/');
     }
 
@@ -67,7 +74,7 @@ class NameController extends Controller
     public function store(Request $request)
     {
         $lastSuggestion = Auth::user()->names()->orderBy('updated_at', 'DESC')->first();
-        if($lastSuggestion && $lastSuggestion->updated_at->diffInHours(now()) < 24) {
+        if ($lastSuggestion && $lastSuggestion->updated_at->diffInHours(now()) < 24) {
             return redirect()->back()->with('error', 'You can only suggest a name once every 24 hours.');
         }
 

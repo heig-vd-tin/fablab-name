@@ -1,13 +1,19 @@
 <template layout>
+    <img
+        src="@/assets/heig-logo.svg"
+        class="sm:w-30 md:w-25 absolute left-5 top-5 w-20 sm:left-10 sm:top-10 lg:w-32"
+    />
+
     <section
-        class="mx-auto max-w-full bg-gradient-to-r from-sky-300 to-blue-600 pb-16 text-center sm:px-6 lg:px-4 lg:pt-32"
+        id="particles-js"
+        class="mx-auto max-w-full bg-gradient-to-r from-sky-300 to-blue-600 text-center"
+        style="height: 30rem"
+    ></section>
+    <section
+        class="auto absolute top-0 left-0 w-full pt-20 text-center sm:pt-32"
     >
-        <img
-            src="@/assets/heig-logo.svg"
-            class="absolute left-5 top-5 w-20 sm:left-10 sm:top-10 sm:w-32"
-        />
         <h1
-            class="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl"
+            class="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 md:text-7xl"
         >
             Le
             <span class="text-white">FabLab</span>
@@ -147,7 +153,7 @@
             </p>
         </div>
         <div v-else>
-            <p class="mt-10 mb-5 text-justify">
+            <p class="mb-5 text-justify">
                 À toi de jouer ! Nous cherchons un nom court, moderne,
                 percutant, simple à prononcer et à retenir à la symbolique
                 compatible avec les mots-clés : laboratoire, atelier, étudiants,
@@ -156,7 +162,11 @@
                 fabrication, innovation, créativité et bien entendu l'esprit
                 maker...
             </p>
-
+            <p class="mb-5 text-justify">
+                <strong>Attention</strong>, une fois la proposition validée, tu
+                ne pourras plus la modifier ou la supprimer. Inspires-toi des
+                noms déjà existants plus bas.
+            </p>
             <form @submit.prevent="submit">
                 <input
                     type="text"
@@ -178,12 +188,12 @@
                 <div v-if="form.errors.description">
                     {{ form.errors.description }}
                 </div>
-                <div class="flex content-center justify-end">
+                <div class="flex content-center items-center justify-end">
                     <input
                         type="checkbox"
                         name="anonymous"
                         id="anonymous"
-                        class="h-5 w-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                        class="h-5 w-5 rounded border-gray-300 text-indigo-600 outline-none"
                         v-model="form.anonymous"
                     />
                     <label
@@ -282,9 +292,8 @@
             </p>
         </div>
     </section>
-    <div class="mx-auto mt-6 max-w-4xl"></div>
 
-    <section class="mx-auto mt-20 px-20 md:container">
+    <section class="mx-auto mt-5 px-20 md:container">
         <Votes :data="names" :votes="votes" />
     </section>
 
@@ -330,8 +339,8 @@
         <span class="isolate inline-flex shadow-sm"
             >Tu as trouvé un bug ? Informes-nous ici
         </span>
-        <a href="https://github.com/heig-vd-tin/fablab-name">
-            <img src="@/assets/octocat.svg" target="_blank" class="ml-2 w-10" />
+        <a href="https://github.com/heig-vd-tin/fablab-name" target="_blank">
+            <img src="@/assets/octocat.svg" class="ml-2 w-8" />
         </a>
     </section>
 </template>
@@ -341,6 +350,7 @@ import Votes from '../pages/Votes.vue'
 import { useForm } from '@inertiajs/inertia-vue3'
 import simpleParallax from 'simple-parallax-js'
 import { onMounted } from 'vue'
+import '../../scripts/particles.js'
 
 defineProps({
     names: Object,
@@ -418,6 +428,112 @@ onMounted(() => {
     )
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new Tooltip(tooltipTriggerEl)
+    })
+
+    particlesJS('particles-js', {
+        particles: {
+            number: {
+                value: 100,
+                // density: {
+                //     enable: true,
+                //     value_area: 200,
+                // },
+            },
+            color: {
+                value: '#ffffff',
+            },
+            shape: {
+                type: 'circle',
+                stroke: {
+                    width: 0,
+                    color: '#000000',
+                },
+                polygon: {
+                    nb_sides: 5,
+                },
+            },
+            opacity: {
+                value: 0.8,
+                random: false,
+                anim: {
+                    enable: false,
+                    speed: 0.2,
+                    opacity_min: 0.1,
+                    sync: false,
+                },
+            },
+            size: {
+                value: 3,
+                random: true,
+                anim: {
+                    enable: false,
+                    speed: 10,
+                    size_min: 0.1,
+                    sync: false,
+                },
+            },
+            line_linked: {
+                enable: true,
+                distance: 150,
+                color: '#ffffff',
+                opacity: 0.4,
+                width: 1,
+            },
+            move: {
+                enable: true,
+                speed: 2,
+                direction: 'none',
+                random: false,
+                straight: false,
+                out_mode: 'out',
+                bounce: true,
+                attract: {
+                    enable: false,
+                    rotateX: 600,
+                    rotateY: 1200,
+                },
+            },
+        },
+        interactivity: {
+            detect_on: 'canvas',
+            events: {
+                onhover: {
+                    enable: true,
+                    mode: 'grab',
+                },
+                onclick: {
+                    enable: true,
+                    mode: 'push',
+                },
+                resize: true,
+            },
+            modes: {
+                grab: {
+                    distance: 140,
+                    line_linked: {
+                        opacity: 1,
+                    },
+                },
+                bubble: {
+                    distance: 400,
+                    size: 40,
+                    duration: 2,
+                    opacity: 8,
+                    speed: 3,
+                },
+                repulse: {
+                    distance: 200,
+                    duration: 0.4,
+                },
+                push: {
+                    particles_nb: 4,
+                },
+                remove: {
+                    particles_nb: 2,
+                },
+            },
+        },
+        retina_detect: true,
     })
 })
 </script>

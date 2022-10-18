@@ -24,10 +24,12 @@ class KeyCloakController extends Controller
         ], [
             'name' => $remote_user->name,
             'email' => $remote_user->email,
-            'refresh_token' => $remote_user->refreshToken
+            'refresh_token' => $remote_user->refreshToken,
+            'last_visit_at' => now(),
         ]);
+        $user->increment('visits');
 
-        Auth::login($user);
+        Auth::login($user, $remember = true);
 
         return redirect('/');
     }

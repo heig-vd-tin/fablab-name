@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/sh
 # This script is used to deploy the application to the server
 
 git pull

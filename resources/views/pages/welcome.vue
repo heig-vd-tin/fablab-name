@@ -176,7 +176,7 @@
                     placeholder="Quel nom souhaites-tu proposer ?"
                     v-model="form.name"
                 />
-                <div v-if="form.errors.name">{{ form.errors.name }}</div>
+                <div v-if="form.errors.name" class="mb-3 -mt-2 font-bold text-rose-700">{{ form.errors.name }}</div>
                 <input
                     type="text"
                     name="description"
@@ -185,7 +185,7 @@
                     placeholder="Décrit ta proposition en quelques mots"
                     v-model="form.description"
                 />
-                <div v-if="form.errors.description">
+                <div v-if="form.errors.description" class="mb-3 -mt-2 font-bold text-rose-700">
                     {{ form.errors.description }}
                 </div>
                 <div class="flex content-center items-center justify-end">
@@ -215,15 +215,15 @@
     </section>
 
     <section
-        class="mx-auto max-w-full bg-gradient-to-l from-sky-300 to-blue-600 p-2 pt-10 font-display tracking-tight text-slate-900"
+        class="text-white mx-auto max-w-full bg-gradient-to-l from-sky-300 to-blue-600 p-2 pt-10 font-display tracking-tight"
     >
         <h1
-            class="text-center font-display font-bold tracking-tight text-slate-900 sm:text-4xl"
+            class="text-center font-display font-bold tracking-tight sm:text-4xl"
         >
             Prêt pour voter ?
         </h1>
-        <div class="mx-auto max-w-3xl pb-10 pt-5">
-            <h3 class="pb-5 pt-2 text-lg font-medium leading-6 text-gray-900">
+        <div class="mx-auto max-w-3xl pb-10 pt-5 ">
+            <h3 class="pb-5 pt-2 text-lg font-medium leading-6 ">
                 Règles du jeu
             </h3>
 
@@ -249,7 +249,7 @@
                 </li>
             </ul>
 
-            <h3 class="text-lg font-medium leading-6 text-gray-900">
+            <h3 class="text-lg font-medium leading-6">
                 Statistiques
             </h3>
             <dl class="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-3">

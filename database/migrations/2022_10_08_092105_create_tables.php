@@ -25,7 +25,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->restrictOnDelete();
             $table->string('name')->unique();
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->boolean('anonymous')->default(false);
             $table->timestamps();
         });

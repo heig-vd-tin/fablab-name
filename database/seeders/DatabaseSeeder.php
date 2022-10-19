@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\Name;
 
 class DatabaseSeeder extends Seeder
 {
@@ -44,6 +45,11 @@ class DatabaseSeeder extends Seeder
         foreach ($names as $name) {
             $name['anonymous'] = true;
             $user->names()->create($name)->save();
+        }
+
+        if (app()->environment('local')) {
+            User::factory(200)->create();
+            Name::factory(100)->create();
         }
     }
 }

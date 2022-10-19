@@ -13,6 +13,7 @@ use Auth;
 
 class User extends Authenticatable
 {
+    use HasFactory;
     // use HasApiTokens, HasFactory, Notifiable;
 
     /**

@@ -20,6 +20,15 @@ $ npx vite
 $ php artisan serve
 ```
 
+### Seed
+
+When the app is in `local` mode, you can seed the database with plenty of fake data using the following command:
+
+```bash
+$ php artisan migrate:fresh --seed
+$ php artisan db:seed --class=VoteSeeder
+```
+
 ### Versions
 
 ```

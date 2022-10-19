@@ -1,10 +1,10 @@
 {
-    "recommendations": [
-        "qwtel.sqlite-viewer",
-        "bmewburn.vscode-intelephense-client",
-        "vue.volar",
-        "onecentlin.laravel-extension-pack",
-        "bmewburn.vscode-intelephense-client",
-        "dbaeumer.vscode-eslint"
-    ]
+  "recommendations": [
+      "qwtel.sqlite-viewer",
+      "bmewburn.vscode-intelephense-client",
+      "misterj.vue-volar-extention-pack",
+      "onecentlin.laravel-extension-pack",
+      "bmewburn.vscode-intelephense-client",
+      "dbaeumer.vscode-eslint"
+  ]
 }

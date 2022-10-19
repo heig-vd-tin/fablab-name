@@ -73,13 +73,13 @@
             :key="item.id"
             class="flex shrink-0 grow-0 basis-full break-inside-avoid-column items-center py-1 sm:px-2 lg:basis-1/2 xl:basis-1/3"
         >
-            <VoteBtn
+            <Updown
                 :vote="item.upvote - item.downvote"
                 :count="item.score"
                 :disabled="votes <= 0 || item.owned"
                 @upvote="upvote(item.id)"
                 @downvote="downvote(item.id)"
-            ></VoteBtn>
+            ></Updown>
             <div class="ml-3">
                 <p class="text-sm font-medium text-gray-900">
                     {{ item.name }}
@@ -97,7 +97,7 @@
     </ul>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { reactive, computed, toRefs } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
 import {
@@ -106,7 +106,6 @@ import {
     XMarkIcon,
     FaceSmileIcon,
 } from '@heroicons/vue/20/solid'
-import VoteBtn from '@/views/pages/updown.vue'
 
 const props = defineProps({ data: Array, votes: Number })
 
@@ -136,10 +135,10 @@ const reset = () => {
     Inertia.post('/reset', {}, { preserveScroll: true })
 }
 
-const upvote = (id: number) => {
+const upvote = (id) => {
     Inertia.post('/', { id, upvote: true }, { preserveScroll: true })
 }
-const downvote = (id: number) => {
+const downvote = (id) => {
     Inertia.post('/', { id, downvote: true }, { preserveScroll: true })
 }
 </script>

@@ -18,3 +18,5 @@ yarn-error.log
 *:com.dropbox.attrs
 *:Zone.Identifier
 *.sqlite
+components.d.ts
+stats.html

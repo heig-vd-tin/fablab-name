@@ -2,8 +2,6 @@ import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/inertia-vue3'
 import { InertiaProgress } from '@inertiajs/progress'
 import { resolvePageComponent } from 'vite-plugin-laravel/inertia'
-import 'vite/modulepreload-polyfill'
-import 'tw-elements';
 import VueCountdown from '@chenfengyuan/vue-countdown'
 
 createInertiaApp({

@@ -93,7 +93,7 @@
         </p>
     </section>
     <img
-        src="@/assets/laser.jpg"
+        src="@/assets/laser.webp"
         class="parallax-up mt-10 hidden w-full object-cover md:block"
         style="height: 35rem"
     />
@@ -132,7 +132,7 @@
         <img
             class="cursor-pointer"
             @click="blueprint = true"
-            src="@/assets/blueprint.png"
+            src="@/assets/blueprint.webp"
         />
 
         <Map
@@ -144,7 +144,7 @@
     </section>
 
     <img
-        src="@/assets/projmulti.jpg"
+        src="@/assets/projmulti.webp"
         class="parallax-right hidden w-full object-cover sm:block"
         style="height: 35rem"
     />
@@ -339,7 +339,6 @@
 </template>
 
 <script setup lang="ts">
-import Votes from '@/views/pages/votes.vue'
 import { Link, useForm } from '@inertiajs/inertia-vue3'
 import simpleParallax from 'simple-parallax-js'
 import { defineAsyncComponent, onMounted, ref } from 'vue'
@@ -386,12 +385,6 @@ onMounted(() => {
         orientation: 'right',
         delay: 0.6,
         maxTransition: 80,
-    })
-    var tooltipTriggerList = [].slice.call(
-        document.querySelectorAll('[data-bs-toggle="tooltip"]')
-    )
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new Tooltip(tooltipTriggerEl)
     })
 
     particlesJS('particles-js', {

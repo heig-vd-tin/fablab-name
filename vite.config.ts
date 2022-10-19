@@ -1,26 +1,22 @@
 import { defineConfig } from 'vite'
-import tailwindcss from 'tailwindcss'
-import autoprefixer from 'autoprefixer'
-import laravel from 'vite-plugin-laravel'
-import dynamicImport from 'vite-plugin-dynamic-import';
-import vue from '@vitejs/plugin-vue'
 import { fileURLToPath, URL } from "url";
+import { splitVendorChunkPlugin } from 'vite'
+import { visualizer } from "rollup-plugin-visualizer";
+import autoprefixer from 'autoprefixer'
+import Components from 'unplugin-vue-components/vite'
+import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
+import dynamicImport from 'vite-plugin-dynamic-import';
 import inertia from './resources/scripts/vite/inertia-layout'
-// import Components from 'unplugin-vue-components/vite'
-// import Unocss from 'unocss/vite'
-// import {
-//   presetAttributify,
-//   presetIcons,
-//   presetUno,
-//   transformerDirectives,
-//   transformerVariantGroup,
-// } from 'unocss'
+import laravel from 'vite-plugin-laravel'
+import tailwindcss from 'tailwindcss'
+import vue from '@vitejs/plugin-vue'
 
+let _path = fileURLToPath(new URL("./resources", import.meta.url));
 
 export default defineConfig({
   resolve: {
     alias: {
-      "@": fileURLToPath(new URL("./resources", import.meta.url)),
+      "@": _path,
     },
   },
   plugins: [
@@ -33,5 +29,9 @@ export default defineConfig({
       ],
     }),
     dynamicImport(),
+    cssInjectedByJsPlugin(),
+    splitVendorChunkPlugin(),
+    visualizer(),
+    Components({ dts: true, dirs: [_path + "/views"], }),
   ]
 })

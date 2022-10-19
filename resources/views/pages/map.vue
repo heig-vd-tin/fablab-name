@@ -18,7 +18,7 @@
             </div>
             <img
                 class="modal-content m-auto max-h-screen max-w-full"
-                src="@/assets/blueprint-big.png"
+                src="@/assets/blueprint-big.webp"
                 alt="blueprint"
             />
         </div>

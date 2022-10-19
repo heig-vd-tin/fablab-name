@@ -13,11 +13,7 @@ class Name extends Model
     use HasFactory;
     protected $appends = array('score');
 
-    protected $fillable = [
-        'name',
-        'description',
-        'votes',
-    ];
+    protected $guarded = ['id'];
 
     public function user()
     {

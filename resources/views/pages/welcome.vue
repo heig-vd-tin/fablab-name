@@ -22,7 +22,8 @@
         <p
             class="mx-auto mt-10 max-w-2xl px-3 text-justify text-lg font-normal text-slate-200"
         >
-            Né en 2016 à la <a href="http://heig-vd.ch">HEIG-VD</a>, le
+            Né en 2016 à la
+            <a href="http://heig-vd.ch" target="_blank">HEIG-VD</a>, le
             <span class="font-bold">FabLab</span> est un espace ouvert aux
             étudiant·e·es et aux collaborateurs·trices de l'école pour réaliser
             leurs projets académiques et privés en mettant à disposition des
@@ -60,7 +61,7 @@
             Comment participer ?
         </h1>
         <p class="mt-10 mb-5 text-justify">
-            Nous lançons auprès de toutes et tous une campagne
+            Nous lançons une campagne
             <strong>interactive</strong> et collaborative pour trouver un
             nouveau nom.
 
@@ -69,18 +70,18 @@
                 :interval="100"
                 v-slot="{ days, hours, minutes, seconds, milliseconds }"
             >
-                Alors, dépêche-toi de te rendre au bas de la page pour saisir
-                tes votes, car il ne reste que {{ days }} jours,
-                {{ hours }} heures et {{ minutes }} minutes pour tenter de
-                remporter la récompense.
+                Alors, dépêche-toi de te rendre
+                <a href="#votes">au bas de la page</a> pour saisir tes votes,
+                car il ne reste que {{ days }} jours, {{ hours }} heures et
+                {{ minutes }} minutes pour tenter de remporter la récompense.
             </vue-countdown>
         </p>
 
         <p class="pb-4 text-justify text-slate-800">
             La première place du classement sera récompensée par un bon d'une
             valeur de <strong>150 francs</strong> à la
-            <a href="https://www.fr.fnac.ch/">FNAC</a>, la seconde place de
-            <strong>100 francs</strong> et la troisième de
+            <a href="https://www.fr.fnac.ch/" target="_blank">FNAC</a>, la
+            seconde place de <strong>100 francs</strong> et la troisième de
             <strong>50 francs</strong>.
         </p>
     </section>
@@ -100,9 +101,10 @@
             L'actuel espace est accessible sur le site de Cheseaux dans le local
             C08. L'accès est réservé à celles et ceux qui ont signé les règles
             d'utilisation. Certaines machines ne sont accessibles qu'après une
-            formation. Pour plus d'informations, n'hésitez pas à te rendre sur
-            le
-            <a href="https://intra.heig-vd.ch/campus/fablab/Pages/default.aspx"
+            formation. Pour plus d'informations, n'hésite pas à te rendre sur le
+            <a
+                href="https://intra.heig-vd.ch/campus/fablab/Pages/default.aspx"
+                target="_blank"
                 >site du FabLab</a
             >.
         </p>
@@ -119,9 +121,19 @@
             En 2022, une extension a été prévue pour accueillir plus de monde et
             plus d'équipement. Voici le plan de l'extension :
         </p>
-        <a href="#" @click="toggleModal()">
-            <img src="@/assets/blueprint.png" />
-        </a>
+
+        <img
+            class="cursor-pointer"
+            @click="blueprint = true"
+            src="@/assets/blueprint.png"
+        />
+
+        <Map
+            ref="modal"
+            z-index="500"
+            v-if="blueprint"
+            @close="blueprint = false"
+        />
     </section>
 
     <img
@@ -155,7 +167,7 @@
         <div v-else>
             <p class="mb-5 text-justify">
                 À toi de jouer ! Nous cherchons un nom court, moderne,
-                percutant, simple à prononcer et à retenir à la symbolique
+                percutant, simple à prononcer et à retenir et à la symbolique
                 compatible avec les mots-clés : laboratoire, atelier, étudiants,
                 ingénieurs, projets, réalisation, technologie, création,
                 prototypage, hackerspace, open design, hacker culture,
@@ -164,8 +176,8 @@
             </p>
             <p class="mb-5 text-justify">
                 <strong>Attention</strong>, une fois la proposition validée, tu
-                ne pourras plus la modifier ou la supprimer. Inspire-toi des
-                noms déjà existants plus bas.
+                ne pourras plus la modifier ou la supprimer. Tu peux prendre
+                connaissance des noms déjà existants plus bas.
             </p>
             <form @submit.prevent="submit">
                 <input
@@ -228,6 +240,7 @@
         class="mx-auto max-w-full bg-gradient-to-l from-sky-300 to-blue-600 p-2 pt-10 font-display tracking-tight text-white"
     >
         <h1
+            id="votes"
             class="text-center font-display font-bold tracking-tight sm:text-4xl"
         >
             Prêt pour voter ?
@@ -306,42 +319,6 @@
         <Votes :data="names" :votes="votes" />
     </section>
 
-    <!-- Main modal -->
-    <!--Modal-->
-    <div
-        class="modal pointer-events-none fixed top-0 left-0 flex h-full w-full items-center justify-center opacity-0"
-    >
-        <div
-            class="modal-overlay absolute h-full w-full bg-gray-900 opacity-50"
-        ></div>
-
-        <div
-            class="modal-container z-50 mx-auto w-10/12 max-w-full overflow-y-auto rounded bg-white shadow-lg"
-        >
-            <div
-                class="modal-close absolute top-0 right-0 z-50 mt-4 mr-4 flex cursor-pointer flex-col items-center text-sm text-white"
-            >
-                <svg
-                    class="fill-current text-white"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    viewBox="0 0 18 18"
-                >
-                    <path
-                        d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
-                    ></path>
-                </svg>
-                <span class="text-sm">(Esc)</span>
-            </div>
-
-            <!-- Add margin if you want to see some of the overlay behind the modal-->
-            <div class="modal-content py-4 px-6 text-left">
-                <img src="@/assets/blueprint-big.png" alt="blueprint" />
-            </div>
-        </div>
-    </div>
-
     <section
         class="mx-auto mt-10 flex max-w-full items-center justify-center bg-gradient-to-r from-cyan-500 to-blue-500 py-4 px-4 text-center sm:justify-end"
     >
@@ -356,10 +333,12 @@
 
 <script setup lang="ts">
 import Votes from '@/views/pages/votes.vue'
-import { useForm } from '@inertiajs/inertia-vue3'
+import { Link, useForm } from '@inertiajs/inertia-vue3'
 import simpleParallax from 'simple-parallax-js'
-import { onMounted } from 'vue'
+import { defineAsyncComponent, onMounted, ref } from 'vue'
 import '@/scripts/particles.js'
+
+const Map = defineAsyncComponent(() => import('@/views/pages/map.vue'))
 
 defineProps({
     names: Object,
@@ -370,6 +349,8 @@ defineProps({
     next_suggestion_in: Number,
     errors: Object,
 })
+
+const blueprint = ref(false)
 
 const form = useForm({
     name: null,
@@ -386,40 +367,6 @@ const submitName = () => {
 }
 
 const timeLeft = new Date('2022-11-15T23:59:59') - new Date()
-
-const toggleModal = () => {
-    const body = document.querySelector('body')
-    const modal = document.querySelector('.modal')
-    modal.classList.toggle('opacity-0')
-    modal.classList.toggle('pointer-events-none')
-    body.classList.toggle('modal-active')
-}
-
-var openmodal = document.querySelectorAll('.modal-open')
-for (var i = 0; i < openmodal.length; i++) {
-    openmodal[i].addEventListener('click', function (event) {
-        event.preventDefault()
-        toggleModal()
-    })
-}
-
-var closemodal = document.querySelectorAll('.modal-close')
-for (var i = 0; i < closemodal.length; i++) {
-    closemodal[i].addEventListener('click', toggleModal)
-}
-
-document.onkeydown = function (evt) {
-    evt = evt || window.event
-    var isEscape = false
-    if ('key' in evt) {
-        isEscape = evt.key === 'Escape' || evt.key === 'Esc'
-    } else {
-        isEscape = evt.keyCode === 27
-    }
-    if (isEscape && document.body.classList.contains('modal-active')) {
-        toggleModal()
-    }
-}
 
 onMounted(() => {
     new simpleParallax(document.getElementsByClassName('parallax-up'), {

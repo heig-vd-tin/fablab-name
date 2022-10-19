@@ -12,3 +12,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/add', 'App\Http\Controllers\NameController@store');
     Route::post('/reset', 'App\Http\Controllers\NameController@reset');
 });
+
+Route::get('/map', function () {
+    return inertia('map');
+});

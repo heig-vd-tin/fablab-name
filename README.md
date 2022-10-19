@@ -25,8 +25,8 @@ $ php artisan serve
 When the app is in `local` mode, you can seed the database with plenty of fake data using the following command:
 
 ```bash
-$ php artisan migrate:fresh --seed
-$ php artisan db:seed --class=VoteSeeder
+php artisan migrate:fresh --seed
+php artisan db:seed --class=VoteSeeder
 ```
 
 ### Versions
@@ -67,6 +67,10 @@ PHP 8.1.11 (cli)
 - [ ] Display random order of names ?
 - [ ] CSRF protection
 - [ ] Map of FabLab -> return to top
+- [x] Map of FabLab -> Close escape or click
+- [ ] Folding text too long
+- [ ] Confuse stats and rules on the same location.
+- [ ] Tooltip not disapearing when clicking on the button.
 
 ## Deployment
 

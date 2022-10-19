@@ -46,8 +46,8 @@
             Pourquoi changer de nom ? La terminologie FabLab (fabrication
             laboratory) est une franchise née au Media Lab du MIT en 2001. Ce
             nom impose certaines obligations auxquelles la
-            <a href="http://heig-vd.ch">HEIG-VD</a> ne peut pas accéder. C'est
-            pourquoi notre espace Maker se cherche un nouveau nom.
+            <a href="http://heig-vd.ch">HEIG-VD</a> ne correspond pas. C'est
+            pourquoi notre espace de fabrication se cherche un nouveau nom.
         </p>
         <p class="pb-4 text-justify text-slate-800">
             Nous cherchons un nom qui reflète notre identité, un nom facile à
@@ -98,7 +98,7 @@
 
         <p class="pb-4 text-justify text-slate-800">
             L'actuel espace est accessible sur le site de Cheseaux dans le local
-            C08. L'accès est réservé à ceux qui ont signé les règles
+            C08. L'accès est réservé à celles et ceux qui ont signé les règles
             d'utilisation. Certaines machines ne sont accessibles qu'après une
             formation. Pour plus d'informations, n'hésitez pas à te rendre sur
             le
@@ -109,8 +109,8 @@
         <p class="pb-4 text-justify text-slate-800">
             Cet espace est utilisé pour l'enseignement, notamment dans le cadre
             des projets multidisciplinaires, mais également pour les
-            étudiant·e·s désireu·x·ses de créer et de collaborer. Au FabLab,
-            vous pouvez disposer d'outillages, d'imprimantes 3D, de nombreuses
+            étudiant·e·s qui désirent de créer et collaborer. Au FabLab, vous
+            pouvez disposer d'outillages, d'imprimantes 3D, de nombreuses
             machines telles que graveuse et découpeuse laser ainsi que d'un
             certain nombre de consommables en libre-service.
         </p>
@@ -147,7 +147,8 @@
                     Merci pour ta proposition de nom ! Il n'est possible de
                     proposer un nom que toutes les <strong>24 heures</strong>.
                     Patience donc, car tu pourras à nouveau proposer un nom dans
-                    <strong>{{ hours }} heures et {{ minutes }} minutes</strong>.
+                    <strong>{{ hours }} heures et {{ minutes }} minutes</strong
+                    >.
                 </vue-countdown>
             </p>
         </div>
@@ -163,7 +164,7 @@
             </p>
             <p class="mb-5 text-justify">
                 <strong>Attention</strong>, une fois la proposition validée, tu
-                ne pourras plus la modifier ou la supprimer. Inspires-toi des
+                ne pourras plus la modifier ou la supprimer. Inspire-toi des
                 noms déjà existants plus bas.
             </p>
             <form @submit.prevent="submit">
@@ -176,7 +177,12 @@
                     placeholder="Quel nom souhaites-tu proposer ?"
                     v-model="form.name"
                 />
-                <div v-if="form.errors.name" class="mb-3 -mt-2 font-bold text-rose-700">{{ form.errors.name }}</div>
+                <div
+                    v-if="form.errors.name"
+                    class="mb-3 -mt-2 font-bold text-rose-700"
+                >
+                    {{ form.errors.name }}
+                </div>
                 <input
                     type="text"
                     name="description"
@@ -186,7 +192,10 @@
                     placeholder="Décrit ta proposition en quelques mots"
                     v-model="form.description"
                 />
-                <div v-if="form.errors.description" class="mb-3 -mt-2 font-bold text-rose-700">
+                <div
+                    v-if="form.errors.description"
+                    class="mb-3 -mt-2 font-bold text-rose-700"
+                >
                     {{ form.errors.description }}
                 </div>
                 <div class="flex content-center items-center justify-end">
@@ -216,15 +225,15 @@
     </section>
 
     <section
-        class="text-white mx-auto max-w-full bg-gradient-to-l from-sky-300 to-blue-600 p-2 pt-10 font-display tracking-tight"
+        class="mx-auto max-w-full bg-gradient-to-l from-sky-300 to-blue-600 p-2 pt-10 font-display tracking-tight text-white"
     >
         <h1
             class="text-center font-display font-bold tracking-tight sm:text-4xl"
         >
             Prêt pour voter ?
         </h1>
-        <div class="mx-auto max-w-3xl pb-10 pt-5 ">
-            <h3 class="pb-5 pt-2 text-lg font-medium leading-6 ">
+        <div class="mx-auto max-w-3xl pb-10 pt-5">
+            <h3 class="pb-5 pt-2 text-lg font-medium leading-6">
                 Règles du jeu
             </h3>
 
@@ -240,8 +249,9 @@
                     négatif).
                 </li>
                 <li class="mb-2">
-                    Tu à la possibilité de proposer un nouveau nom
-                    <span class="font-bold">une fois toutes les 24 heures</span>.
+                    Tu as la possibilité de proposer un nouveau nom
+                    <span class="font-bold">une fois toutes les 24 heures</span
+                    >.
                 </li>
                 <li class="mb-2">
                     Un nom en dessous de
@@ -250,9 +260,7 @@
                 </li>
             </ul>
 
-            <h3 class="text-lg font-medium leading-6">
-                Statistiques
-            </h3>
+            <h3 class="text-lg font-medium leading-6">Statistiques</h3>
             <dl class="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-3">
                 <div class="m-2 rounded-lg bg-white px-2 py-3 shadow sm:p-6">
                     <dt class="truncate text-sm font-medium text-gray-500">
@@ -266,7 +274,7 @@
                 </div>
                 <div class="m-2 rounded-lg bg-white px-2 py-3 shadow sm:p-6">
                     <dt class="truncate text-sm font-medium text-gray-500">
-                        Participants
+                        Participant·e·s
                     </dt>
                     <dd
                         class="mt-1 text-center text-3xl font-semibold tracking-tight text-gray-900"

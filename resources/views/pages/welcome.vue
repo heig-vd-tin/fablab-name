@@ -191,7 +191,7 @@
                 />
                 <div
                     v-if="form.errors.name"
-                    class="mb-3 -mt-2 font-bold text-rose-700"
+                    class="mb-3 -mt-2 font-bold text-blue-700"
                 >
                     {{ form.errors.name }}
                 </div>
@@ -320,7 +320,7 @@
     </section>
 
     <section
-        class="mx-auto mt-10 flex max-w-full items-center justify-center bg-gradient-to-r from-cyan-500 to-blue-500 py-4 px-4 text-center sm:justify-end"
+        class="mx-auto mt-10 flex max-w-full items-center justify-center bg-gradient-to-r from-sky-300 to-blue-600 py-4 px-4 text-center sm:justify-end"
     >
         <span class="isolate inline-flex shadow-sm"
             >Tu as trouvé un bug ? Informes-nous ici

@@ -17,15 +17,11 @@
         <span class="isolate inline-flex items-end rounded-md shadow-sm">
             <button
                 type="button"
-                data-tooltip-target="tooltip-default"
                 class="relative inline-flex items-center rounded-l-md border border-gray-500 bg-white px-2 py-2 text-sm font-medium text-gray-500"
                 :class="{ 'bg-sky-500': sortBy == 'score' }"
-                data-bs-toggle="tooltip"
-                data-bs-placement="bottom"
-                title="Trier par popularité"
                 @click="sortBy = 'score'"
+                title="Trier par popularité"
             >
-                <span class="sr-only">Popularité</span>
                 <StarIcon
                     class="h-5 w-5"
                     :class="{
@@ -39,13 +35,10 @@
             <button
                 type="button"
                 class="relative -ml-px inline-flex items-center border border-gray-500 bg-white px-2 py-2 text-sm font-medium text-gray-500"
-                data-bs-toggle="tooltip"
                 :class="{ 'bg-sky-500': sortBy == 'date' }"
-                data-bs-placement="bottom"
-                title="Trier par date"
                 @click="sortBy = 'date'"
+                title="Trier par date"
             >
-                <span class="sr-only">Date</span>
                 <ClockIcon
                     class="h-5 w-5"
                     :class="{
@@ -59,13 +52,10 @@
             <button
                 type="button"
                 class="relative -ml-px inline-flex items-center rounded-r-md border border-gray-500 bg-white px-2 py-2 text-sm font-medium text-gray-500"
-                data-bs-toggle="tooltip"
                 :class="{ 'bg-sky-500': sortBy == 'mine' }"
-                data-bs-placement="bottom"
-                title="Mes votes"
                 @click="sortBy = 'mine'"
+                title="Voir mes votes et mes noms"
             >
-                <span class="sr-only">Mes votes</span>
                 <FaceSmileIcon
                     class="h-5 w-5"
                     :class="{
@@ -77,14 +67,11 @@
             </button>
         </span>
     </div>
-    <ul
-        role="list"
-        class="columns-1 divide-y divide-gray-200 lg:columns-2 xl:columns-3"
-    >
+    <ul role="list" class="mt-2 flex flex-wrap">
         <li
             v-for="item in sortedData"
             :key="item.id"
-            class="flex break-inside-avoid-column items-center py-1 sm:px-2"
+            class="flex shrink-0 grow-0 basis-full break-inside-avoid-column items-center py-1 sm:px-2 lg:basis-1/2 xl:basis-1/3"
         >
             <VoteBtn
                 :vote="item.upvote - item.downvote"
@@ -127,7 +114,9 @@ const state = reactive({
     sortBy: 'score',
     sortedData: computed(() => {
         if (state.sortBy == 'mine') {
-            return props.data.filter((item) => item.owned)
+            return props.data.filter(
+                (item) => item.owned || item.upvote || item.downvote
+            )
         }
         if (state.sortBy == 'date') {
             return props.data.sort((a, b) => {

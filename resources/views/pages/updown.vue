@@ -48,25 +48,29 @@ export interface Props {
     vote?: Number
     count?: Number
     disabled?: Boolean
-    style?: String
 }
 
 const props = withDefaults(defineProps<Props>(), {
     vote: 0,
     count: 0,
     disabled: 0,
-    style: 'arrow',
 })
 
 const emit = defineEmits(['upvote', 'downvote'])
-const vote = ref(props.vote)
 
-const doVote = (value) => {
+const doVote = (value: Number) => {
     if (props.disabled && props.vote == 0) return
-    let event = value > 0 ? 'upvote' : 'downvote'
-    vote.value = vote.value === value ? 0 : value
-    console.log(event)
-    emit(event)
+    if (value == -1 && props.vote == 1) {
+        emit('upvote') // Cancel
+    } else if (value == 1 && props.vote == -1) {
+        emit('downvote') // Cancel
+    } else if (value == 1 && props.vote == 0) {
+        emit('upvote')
+    } else if (value == -1 && props.vote == 0) {
+        emit('downvote')
+    }
+
+    //emit(value > 0 ? 'upvote' : 'downvote')
 }
 </script>
 <style scoped>

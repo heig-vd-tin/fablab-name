@@ -10,7 +10,7 @@
         style="height: 33rem"
     ></section>
     <section
-        class="auto absolute top-0 left-0 w-full pt-20 text-center sm:pt-32"
+        class="auto pointer-events-none absolute top-0 left-0 w-full pt-20 text-center sm:pt-32"
     >
         <h1
             class="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 md:text-7xl"
@@ -72,8 +72,15 @@
             >
                 Alors, dépêche-toi de te rendre
                 <a href="#votes">au bas de la page</a> pour saisir tes votes,
-                car il ne reste que {{ days }} jours, {{ hours }} heures et
-                {{ minutes }} minutes pour tenter de remporter la récompense.
+                car il ne reste que
+                <strong
+                    >{{ days }} jours,
+                    <span v-if="hours > 0">
+                        {{ hours }} heure{{ hours > 1 ? 's' : '' }}, </span
+                    >{{ minutes }} minute{{ minutes > 1 ? 's' : '' }} et
+                    {{ seconds }} seconde{{ seconds > 1 ? 's' : '' }}
+                </strong>
+                minutes pour tenter de remporter la récompense.
             </vue-countdown>
         </p>
 
@@ -366,7 +373,8 @@ const submitName = () => {
     console.log('submit')
 }
 
-const timeLeft = new Date('2022-11-15T23:59:59') - new Date()
+const timeLeft =
+    new Date(import.meta.env.VITE_DEADLINE + 'T23:59:59') - new Date()
 
 onMounted(() => {
     new simpleParallax(document.getElementsByClassName('parallax-up'), {

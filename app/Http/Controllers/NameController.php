@@ -14,9 +14,10 @@ class NameController extends Controller
     /**
      * Return the list of names
      */
-    public function index(Request $request)
+    public function index()
     {
-        return inertia('welcome', [
+        $user = Auth::user()->fresh();
+        return inertia('survey', [
             'names' => Name::all()->filter(function ($model) {
                 return $model['score'] > -5;
             })->map(fn ($name) => [
@@ -30,10 +31,10 @@ class NameController extends Controller
                 'downvote' => $name->downvote,
                 'updated_at' => $name->updated_at,
             ])->values()->all(),
-            'votes' => Auth::user()->fresh()->remaining_votes,
+            'votes' => $user->remaining_votes,
             'participants' => User::all()->count(),
             'all_votes' => Vote::all()->count(),
-            'next_suggestion_in' => Auth::user()->fresh()->next_suggestion_in->totalSeconds,
+            'next_suggestion_in' => $user->next_suggestion_in->totalSeconds,
         ]);
     }
 

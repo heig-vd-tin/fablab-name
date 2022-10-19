@@ -40,39 +40,6 @@ $ php --version
 PHP 8.1.11 (cli)
 ```
 
-## TODO list
-
-- [x] Retrieve votes from user
-- [x] Dispatch remaining votes
-- [x] Remember vote value on each name
-- [x] Show my name on the name?
-- [x] Do not allow to vote on own name
-- [x] Error messages in french
-- [x] Choose pictures
-- [x] Adjust style of text
-- [x] Indicates number of votes per name
-- [x] Propose names
-  - [x] Make form
-  - [x] Validate form
-  - [x] Refresh page
-- [x] Anonymous or not for names
-- [x] Can vote only once per day
-- [x] Order votes by popularity or randomly
-- [x] Is it better to store vote direction instead of bool upvote in db?
-- [x] GitHub link to sources
-- [x] Deploy on server
-- [x] Test login with KeyCloak
-- [x] Remove votes below -5
-- [x] Map of FabLab -> return to top
-- [x] Map of FabLab -> Close escape or click
-- [ ] Issue with vote count when vote is removed (refresh page)
-- [ ] Display random order of names ?
-- [ ] CSRF protection
-- [ ] Folding text too long
-- [ ] Confuse stats and rules on the same location.
-- [ ] Tooltip not disapearing when clicking on the button.
-- [ ] Method Illuminate\Validation\Validator::validateOptional does not exist.
-
 ## Deployment
 
 ### Apache
@@ -130,3 +97,14 @@ php artisan key:generate
 php artisan migrate:fresh --seed
 npm run build
 ```
+
+## TODO list
+
+- [ ] End of survey, what to display?
+- [ ] Server error what to display?
+- [ ] Display random order of names ?
+- [ ] CSRF protection
+- [ ] Folding text too long
+- [ ] Confuse stats and rules on the same location.
+- [ ] Tooltip not disappearing when clicking on the button.
+- [ ] SingleFile is hooking the IntersectionObserver API to detect and load deferred images.

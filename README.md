@@ -63,14 +63,15 @@ PHP 8.1.11 (cli)
 - [x] Deploy on server
 - [x] Test login with KeyCloak
 - [x] Remove votes below -5
+- [x] Map of FabLab -> return to top
+- [x] Map of FabLab -> Close escape or click
 - [ ] Issue with vote count when vote is removed (refresh page)
 - [ ] Display random order of names ?
 - [ ] CSRF protection
-- [ ] Map of FabLab -> return to top
-- [x] Map of FabLab -> Close escape or click
 - [ ] Folding text too long
 - [ ] Confuse stats and rules on the same location.
 - [ ] Tooltip not disapearing when clicking on the button.
+- [ ] Method Illuminate\Validation\Validator::validateOptional does not exist.
 
 ## Deployment
 

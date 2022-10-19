@@ -66,6 +66,7 @@ PHP 8.1.11 (cli)
 - [ ] Issue with vote count when vote is removed (refresh page)
 - [ ] Display random order of names ?
 - [ ] CSRF protection
+- [ ] Map of FabLab -> return to top
 
 ## Deployment
 

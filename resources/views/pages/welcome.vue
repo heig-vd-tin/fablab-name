@@ -78,10 +78,10 @@
 
         <p class="pb-4 text-justify text-slate-800">
             La première place du classement sera récompensée par un bon d'une
-            valeur de <strong>150</strong> francs à la
+            valeur de <strong>150 francs</strong> à la
             <a href="https://www.fr.fnac.ch/">FNAC</a>, la seconde place de
-            <strong>100</strong> francs et la troisième de
-            <strong>50</strong> francs.
+            <strong>100 francs</strong> et la troisième de
+            <strong>50 francs</strong>.
         </p>
     </section>
     <img
@@ -147,8 +147,7 @@
                     Merci pour ta proposition de nom ! Il n'est possible de
                     proposer un nom que toutes les <strong>24 heures</strong>.
                     Patience donc, car tu pourras à nouveau proposer un nom dans
-                    <strong>{{ hours }} heures et {{ minutes }} minutes</strong
-                    >.
+                    <strong>{{ hours }} heures et {{ minutes }} minutes</strong>.
                 </vue-countdown>
             </p>
         </div>
@@ -240,7 +239,7 @@
                 </li>
                 <li class="mb-2">
                     Tu à la possibilité de proposer un nouveau nom
-                    <span class="font-bold">une fois par jour</span>.
+                    <span class="font-bold">une fois toutes les 24 heures</span>.
                 </li>
                 <li class="mb-2">
                     Un nom en dessous de
@@ -285,7 +284,7 @@
                 </div>
             </dl>
             <p class="pt-10">
-                À toi, tu possèdes encore
+                Tu possèdes encore
                 <span class="font-bold"
                     >{{ votes }} vote{{ votes > 0 ? 's' : '' }}</span
                 >, à toi de jouer.

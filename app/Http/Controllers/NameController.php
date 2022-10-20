@@ -92,7 +92,7 @@ class NameController extends Controller
 
         Auth::user()->names()->create($request->validate([
             'name' => 'required|unique:names|min:5|max:42',
-            'description' => 'min:5|max:80',
+            'description' => 'nullable|min:5|max:80',
             'anonymous' => 'boolean'
         ]));
 

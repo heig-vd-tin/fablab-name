@@ -108,3 +108,5 @@ npm run build
 - [ ] Confuse stats and rules on the same location.
 - [ ] Tooltip not disappearing when clicking on the button.
 - [ ] SingleFile is hooking the IntersectionObserver API to detect and load deferred images.
+- [ ] Description empty or min 5 chars
+- [ ] Show name doesn't work 

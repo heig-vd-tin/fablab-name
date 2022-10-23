@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Vote;
 use App\Models\LogVote;
 use Illuminate\Support\Facades\Auth;
+use App\Events\VoteUpdated;
 
 class NameController extends Controller
 {
@@ -65,6 +66,7 @@ class NameController extends Controller
                 'upvote' => (bool)$request->input('upvote'),
             ]);
         }
+        VoteUpdated::dispatch($name);
 
         return redirect('/');
     }

@@ -2,6 +2,7 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
   mode: 'jit',
+  darkMode: 'class',
   content: [
     './resources/**/*.blade.php',
     './resources/**/*.{js,ts,vue}',

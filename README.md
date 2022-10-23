@@ -100,13 +100,27 @@ npm run build
 
 ## TODO list
 
+- [x] Reduce bundle
+- [x] Lazy load modules
+- [x] Show arrow/down
+- [x] Arrow down on mobile?
+- [x] Show name doesn't work
+- [x] Description empty or min 5 chars
+- [x] Folding text too long -> Solved with arrow
 - [ ] End of survey, what to display?
 - [ ] Server error what to display?
 - [ ] Display random order of names ?
 - [ ] CSRF protection
-- [ ] Folding text too long
 - [ ] Confuse stats and rules on the same location.
 - [ ] Tooltip not disappearing when clicking on the button.
 - [ ] SingleFile is hooking the IntersectionObserver API to detect and load deferred images.
-- [ ] Description empty or min 5 chars
-- [ ] Show name doesn't work 
+- [ ] Test Laravel Dusk
+- [ ] Can remove my name if 0 votes
+- [ ] Dark Mode?
+- [ ] Websockets for live stats, show notification when new vote
+- [ ] Only fetch some data
+- [ ] <https://inertiajs.com/partial-reloads> partial data
+
+## Known Issues / Bugs
+
+- [ ] Unable to send events [Websockets stopped working](https://github.com/beyondcode/laravel-websockets/issues/1041)

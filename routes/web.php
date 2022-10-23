@@ -16,3 +16,6 @@ Route::middleware('auth')->group(function () {
 Route::get('/map', function () {
     return inertia('map');
 });
+Route::get('/end', function () {
+    return inertia('end');
+});

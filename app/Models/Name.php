@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Vote;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\BroadcastsEvents;
 
 class Name extends Model
 {
-    use HasFactory;
+    use BroadcastsEvents, HasFactory;
     protected $appends = array('score');
 
     protected $guarded = ['id'];
@@ -46,5 +47,10 @@ class Name extends Model
             return $entry and !$entry->pivot->upvote;
         }
         return false;
+    }
+
+    public function broadcastOn($event)
+    {
+        return [$this, $this->user];
     }
 }

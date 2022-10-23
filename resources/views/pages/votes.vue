@@ -95,10 +95,71 @@
             </div>
         </li>
     </ul>
+    <div
+        aria-live="assertive"
+        class="pointer-events-none fixed inset-0 flex items-end px-4 py-6 sm:items-start sm:p-5"
+    >
+        <div class="flex w-full flex-col items-center space-y-4 sm:items-end">
+            <!-- Notification panel, dynamically insert this into the live region when it needs to be displayed -->
+            <transition
+                enter-active-class="transform ease-out duration-300 transition"
+                enter-from-class="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
+                enter-to-class="translate-y-0 opacity-100 sm:translate-x-0"
+                leave-active-class="transition ease-in duration-100"
+                leave-from-class="opacity-100"
+                leave-to-class="opacity-0"
+            >
+                <div
+                    v-if="notification"
+                    class="pointer-events-auto w-full max-w-sm rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5"
+                >
+                    <div class="p-3">
+                        <div class="flex items-start">
+                            <div class="w-0 flex-1">
+                                <p class="text-sm font-medium text-gray-900">
+                                    Il y a des nouveaux votes
+                                </p>
+                                <div class="mt-4 flex">
+                                    <button
+                                        type="button"
+                                        @click="update()"
+                                        class="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                    >
+                                        Mettre à jour
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="ml-4 flex flex-shrink-0">
+                                <button
+                                    type="button"
+                                    @click="notification = false"
+                                    class="inline-flex rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                >
+                                    <span class="sr-only">Fermer</span>
+                                    <XMarkIcon
+                                        class="h-5 w-5"
+                                        aria-hidden="true"
+                                    />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </transition>
+        </div>
+    </div>
 </template>
 
 <script setup>
-import { reactive, computed, toRefs } from 'vue'
+import {
+    ref,
+    inject,
+    reactive,
+    computed,
+    toRefs,
+    onMounted,
+    onUnmounted,
+} from 'vue'
 import { Inertia } from '@inertiajs/inertia'
 import {
     StarIcon,
@@ -108,6 +169,8 @@ import {
 } from '@heroicons/vue/20/solid'
 
 const props = defineProps({ data: Array, votes: Number })
+const echo = inject('echo')
+const notification = ref(false)
 
 const state = reactive({
     sortBy: 'score',
@@ -141,4 +204,19 @@ const upvote = (id) => {
 const downvote = (id) => {
     Inertia.post('/', { id, downvote: true }, { preserveScroll: true })
 }
+
+const update = () => {
+    notification.value = false
+    Inertia.get('/', {}, { preserveScroll: true })
+}
+
+onMounted(() => {
+    echo.channel('name').listen('VoteUpdated', (e) => {
+        notification.value = true
+    })
+})
+
+onUnmounted(() => {
+    echo.leave('name')
+})
 </script>
